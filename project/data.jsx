@@ -1,34 +1,38 @@
 /* global React */
 // ============== DATA ==============
 
-// Unsplash stock photos mapped by vehicle type — swap with real Irha Kars photos when available
-const CAR_IMGS = {
-  hatch:   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=640&h=420&auto=format&fit=crop&q=80',
-  sedan:   'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=640&h=420&auto=format&fit=crop&q=80',
-  suv:     'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&h=420&auto=format&fit=crop&q=80',
-  suv2:    'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=640&h=420&auto=format&fit=crop&q=80',
-  luxury:  'https://images.unsplash.com/photo-1583121274602-3e2ac4f349f6?w=640&h=420&auto=format&fit=crop&q=80',
-  tempo:   'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&h=420&auto=format&fit=crop&q=80',
-  bus:     'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=640&h=420&auto=format&fit=crop&q=80',
-  sleeper: 'https://images.unsplash.com/photo-1601629665203-f9f2b8d07d39?w=640&h=420&auto=format&fit=crop&q=80',
-};
-
+// Vehicle images — accurate per model from Wikimedia Commons (public domain / CC licensed)
 const CARS = [
-  { name:'Swift',           cat:'Hatchback', type:'hatch',   seats:4,  bags:2,  ac:true, trans:'Manual',    price:1800, tag:'Compact',   img: CAR_IMGS.hatch   },
-  { name:'Amaze',           cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2200, tag:'Sedan',     img: CAR_IMGS.sedan   },
-  { name:'Galanza',         cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2400, tag:'Sedan',     img: CAR_IMGS.sedan   },
-  { name:'Ertiga',          cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Manual',    price:2800, tag:'Family',    img: CAR_IMGS.suv     },
-  { name:'Urbinia',         cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Auto',      price:3200, tag:'Family',    img: CAR_IMGS.suv     },
-  { name:'Innova',          cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Manual',    price:3600, tag:'Popular',   img: CAR_IMGS.suv2    },
-  { name:'Innova Crysta',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto',      price:4200, tag:'Premium',   img: CAR_IMGS.suv2    },
-  { name:'Fortuner 4×4',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto 4×4',  price:6500, tag:'Luxury',    img: CAR_IMGS.luxury  },
-  { name:'12 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:12, bags:10, ac:true, trans:'Manual',    price:4500, tag:'Group',     img: CAR_IMGS.tempo   },
-  { name:'17 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:17, bags:14, ac:true, trans:'Manual',    price:5800, tag:'Group',     img: CAR_IMGS.tempo   },
-  { name:'20 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:20, bags:18, ac:true, trans:'Manual',    price:6800, tag:'Group',     img: CAR_IMGS.tempo   },
-  { name:'26 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:26, bags:22, ac:true, trans:'Manual',    price:8500, tag:'Large',     img: CAR_IMGS.tempo   },
-  { name:'27 Seater Bus',   cat:'Bus',       type:'bus',     seats:27, bags:25, ac:true, trans:'Manual',    price:9200, tag:'Coach',     img: CAR_IMGS.bus     },
-  { name:'37 Seater Bus',   cat:'Bus',       type:'bus',     seats:37, bags:34, ac:true, trans:'Manual',    price:11500,tag:'Coach',     img: CAR_IMGS.bus     },
-  { name:'Volvo Sleeper 9600', cat:'Sleeper', type:'sleeper',seats:36, bags:36, ac:true, trans:'Manual',    price:18500,tag:'Overnight', img: CAR_IMGS.sleeper },
+  { name:'Swift',           cat:'Hatchback', type:'hatch',   seats:4,  bags:2,  ac:true, trans:'Manual',    price:1800,  tag:'Compact',
+    img:'https://upload.wikimedia.org/wikipedia/commons/d/d2/Maruti_Suzuki_Swift_2092.JPG' },
+  { name:'Amaze',           cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2200,  tag:'Sedan',
+    img:'https://upload.wikimedia.org/wikipedia/commons/f/f4/Honda_Amaze_%28front%29.png' },
+  { name:'Galanza',         cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2400,  tag:'Sedan',
+    img:'https://upload.wikimedia.org/wikipedia/commons/5/5b/2022_Maruti_Suzuki_Baleno_Alpha_%28India%29_front_view.jpg' },
+  { name:'Ertiga',          cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Manual',    price:2800,  tag:'Family',
+    img:'https://upload.wikimedia.org/wikipedia/commons/f/f6/Suzuki_Ertiga.jpg' },
+  { name:'Urbinia',         cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Auto',      price:3200,  tag:'Family',
+    img:'https://upload.wikimedia.org/wikipedia/commons/f/f6/Suzuki_Ertiga.jpg' },
+  { name:'Innova',          cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Manual',    price:3600,  tag:'Popular',
+    img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/2009-2010_Toyota_Innova_Ph.JPG' },
+  { name:'Innova Crysta',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto',      price:4200,  tag:'Premium',
+    img:'https://upload.wikimedia.org/wikipedia/commons/8/87/Toyota_Innova_Crysta_2.4_Z_front_right.jpg' },
+  { name:'Fortuner 4×4',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto 4×4',  price:6500,  tag:'Luxury',
+    img:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Toyota_Fortuner_4x4_V.jpg' },
+  { name:'12 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:12, bags:10, ac:true, trans:'Manual',    price:4500,  tag:'Group',
+    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+  { name:'17 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:17, bags:14, ac:true, trans:'Manual',    price:5800,  tag:'Group',
+    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+  { name:'20 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:20, bags:18, ac:true, trans:'Manual',    price:6800,  tag:'Group',
+    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+  { name:'26 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:26, bags:22, ac:true, trans:'Manual',    price:8500,  tag:'Large',
+    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+  { name:'27 Seater Bus',   cat:'Bus',       type:'bus',     seats:27, bags:25, ac:true, trans:'Manual',    price:9200,  tag:'Coach',
+    img:'https://upload.wikimedia.org/wikipedia/commons/7/79/Ashok_Leyland_Viking_bus.jpg' },
+  { name:'37 Seater Bus',   cat:'Bus',       type:'bus',     seats:37, bags:34, ac:true, trans:'Manual',    price:11500, tag:'Coach',
+    img:'https://upload.wikimedia.org/wikipedia/commons/7/79/Ashok_Leyland_Viking_bus.jpg' },
+  { name:'Volvo Sleeper 9600', cat:'Sleeper', type:'sleeper',seats:36, bags:36, ac:true, trans:'Manual',    price:18500, tag:'Overnight',
+    img:'https://upload.wikimedia.org/wikipedia/commons/5/51/Volvo_9600_bus.jpg' },
 ];
 
 const ROUTES = [

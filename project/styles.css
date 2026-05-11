@@ -679,9 +679,133 @@ footer {
   display: flex; justify-content: space-between; font-size: 13px; color: rgba(255,255,255,.4);
 }
 
+/* ============== keyframe animations ============== */
+@keyframes fadeInUp   { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:none; } }
+@keyframes fadeInLeft { from { opacity:0; transform:translateX(-32px); } to { opacity:1; transform:none; } }
+@keyframes fadeInRight{ from { opacity:0; transform:translateX(32px); } to { opacity:1; transform:none; } }
+@keyframes scaleIn    { from { opacity:0; transform:scale(.94); } to { opacity:1; transform:scale(1); } }
+@keyframes float      { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-14px); } }
+@keyframes floatBadge { 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-6px) scale(1.02); } }
+@keyframes pulseRing  { 0%{ transform:scale(1); opacity:.5; } 100%{ transform:scale(1.7); opacity:0; } }
+@keyframes shimmerBar { 0%{ background-position:-200% center; } 100%{ background-position:200% center; } }
+@keyframes dotPulse   { 0%,100%{ transform:scale(1) translateY(-1px); } 50%{ transform:scale(1.5) translateY(-1px); } }
+@keyframes marqueeSlide { from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
 /* ============== reveal on scroll ============== */
-.reveal { opacity: 0; transform: translateY(32px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); }
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1);
+}
 .reveal.in { opacity: 1; transform: none; }
+
+/* stagger siblings inside grids */
+.routes .route-card.reveal:nth-child(2)       { transition-delay: .12s; }
+.routes .route-card.reveal:nth-child(3)       { transition-delay: .24s; }
+.pkg-grid .pkg.reveal:nth-child(2)            { transition-delay: .12s; }
+.pkg-grid .pkg.reveal:nth-child(3)            { transition-delay: .24s; }
+.testimonials .t-card.reveal:nth-child(2)     { transition-delay: .12s; }
+.testimonials .t-card.reveal:nth-child(3)     { transition-delay: .24s; }
+.roster .person.reveal:nth-child(2)           { transition-delay: .08s; }
+.roster .person.reveal:nth-child(3)           { transition-delay: .16s; }
+.roster .person.reveal:nth-child(4)           { transition-delay: .24s; }
+.roster .person.reveal:nth-child(5)           { transition-delay: .08s; }
+.roster .person.reveal:nth-child(6)           { transition-delay: .16s; }
+.roster .person.reveal:nth-child(7)           { transition-delay: .24s; }
+.roster .person.reveal:nth-child(8)           { transition-delay: .32s; }
+
+/* ============== hero entrance animations ============== */
+.hero-eyebrow  { animation: fadeInUp .6s .1s both; }
+.hero-headline { animation: fadeInUp .75s .2s both; }
+.hero-sub      { animation: fadeInUp .7s .38s both; }
+.hero-cta      { animation: fadeInUp .7s .52s both; }
+.hero-stats    { animation: fadeInUp .7s .66s both; }
+.hero-visual   { animation: fadeInRight .9s .25s both; }
+
+/* floating car image */
+.hero-img-wrap {
+  animation: float 7s 1.2s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-img-badge {
+  animation: floatBadge 5s 1.8s ease-in-out infinite;
+}
+
+/* animated eyebrow dot */
+.eyebrow .dot { animation: dotPulse 2.4s ease-in-out infinite; }
+
+/* ============== stats strip ============== */
+/* counter numbers animate in */
+.stats-strip .cell.in .n {
+  animation: fadeInUp .6s both;
+}
+
+/* teal shimmer bar on featured pkg */
+.pkg.featured::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+  background-size: 200% auto;
+  animation: shimmerBar 2.4s linear infinite;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* WhatsApp button pulse ring */
+.btn.wa { position: relative; overflow: visible; }
+.btn.wa::before {
+  content: ''; position: absolute; inset: -4px; border-radius: 999px;
+  border: 2px solid #25D366; opacity: 0;
+  animation: pulseRing 2s ease-out infinite;
+}
+
+/* nav link hover underline */
+.nav .links a { transition: color .2s; }
+
+/* booking widget field focus glow */
+.booking .field:focus-within {
+  background: rgba(0,161,155,.08);
+  outline: 1.5px solid var(--teal);
+}
+
+/* car card image smooth reveal */
+.car-img-wrap { position: relative; overflow: hidden; }
+.car-img-wrap::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(26,38,37,.06) 100%);
+  pointer-events: none;
+}
+
+/* section transition: teal accent bar on h2 hover */
+.s-title .accent {
+  position: relative; display: inline;
+}
+
+/* smooth scroll globally */
+html { scroll-behavior: smooth; }
+
+/* fleet card entrance when in viewport */
+.car-card {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .5s cubic-bezier(.2,.7,.2,1), transform .5s cubic-bezier(.2,.7,.2,1),
+              box-shadow .3s ease, border-color .3s ease;
+}
+.car-card.visible {
+  opacity: 1; transform: none;
+}
+
+/* contact crow hover */
+.contact .info .crow {
+  transition: background .2s, transform .2s;
+}
+.contact .info .crow:hover {
+  background: rgba(255,255,255,.2);
+  transform: translateX(4px);
+}
+
+/* faq item hover */
+.faq-item { transition: padding .25s ease; }
+.faq-item:hover .fq h4 { color: var(--teal); }
+.faq-item .fq h4 { transition: color .2s; }
 
 /* ============== logo mark ============== */
 .logo-mark { display: inline-block; width: 32px; height: 32px; color: var(--teal); }

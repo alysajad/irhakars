@@ -14,6 +14,43 @@ function useReveal() {
   });
 }
 
+// ============== Animated counter ==============
+function useCountUp(target, duration = 1600) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current; if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      io.disconnect();
+      let start = null;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(eased * target));
+        if (progress < 1) requestAnimationFrame(step);
+        else setCount(target);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.5 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [target, duration]);
+  return [count, ref];
+}
+
+// ============== Animated stat cell ==============
+function StatCell({ n, sup, label }) {
+  const [count, ref] = useCountUp(n, 1800);
+  return (
+    <div className="cell in" ref={ref}>
+      <div className="n">{count}<sup>{sup}</sup></div>
+      <div className="l">{label}</div>
+    </div>
+  );
+}
+
 // ============== WA icon ==============
 const WaIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -41,10 +78,10 @@ function Marquee(){
 function Stats(){
   return (
     <section className="stats-strip">
-      <div className="cell"><div className="n">15<sup>+</sup></div><div className="l">Vehicle types</div></div>
-      <div className="cell"><div className="n">40<sup>+</sup></div><div className="l">Experienced drivers</div></div>
-      <div className="cell"><div className="n">17<sup>yrs</sup></div><div className="l">Kashmir route mastery</div></div>
-      <div className="cell"><div className="n">24<sup>/7</sup></div><div className="l">Control room support</div></div>
+      <StatCell n={15} sup="+" label="Vehicle types"/>
+      <StatCell n={40} sup="+" label="Experienced drivers"/>
+      <StatCell n={17} sup="yrs" label="Kashmir route mastery"/>
+      <StatCell n={24} sup="/7" label="Control room support"/>
     </section>
   );
 }
@@ -130,6 +167,22 @@ function Fleet(){
   const scroll = (dir) => {
     if (trackRef.current) trackRef.current.scrollBy({ left: dir * 360, behavior: 'smooth' });
   };
+
+  // staggered card visibility as they scroll into view
+  useEffect(() => {
+    const cards = trackRef.current?.querySelectorAll('.car-card');
+    if (!cards) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(c => io.observe(c));
+    return () => io.disconnect();
+  }, [list]);
 
   // drag-to-scroll
   useEffect(() => {
