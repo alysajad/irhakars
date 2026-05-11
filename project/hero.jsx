@@ -71,9 +71,18 @@ function Hero(){
 
   return (
     <section className="hero" id="home">
-      <div className="wrap">
+      {/* Kashmir mountain photo background */}
+      <div className="hero-bg">
+        <img
+          src="https://source.unsplash.com/RQYqCxdFYpQ/1920x1080"
+          alt=""
+          loading="eager"
+          onError={(e) => { e.currentTarget.style.display = 'none'; }}
+        />
+      </div>
+
+      <div className="wrap" style={{position:'relative',zIndex:2}}>
         <div className="hero-inner">
-          {/* LEFT: content */}
           <div className="hero-content">
             <div className="hero-eyebrow eyebrow">
               <span className="dot"></span>SINCE 2009 · SRINAGAR, KASHMIR
@@ -115,21 +124,6 @@ function Hero(){
               <div className="stat">
                 <div className="n">17<sup>yrs</sup></div>
                 <div className="l">Kashmir routes</div>
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT: hero car image */}
-          <div className="hero-visual">
-            <div className="hero-img-wrap">
-              <img
-                src="https://images.unsplash.com/photo-1583121274602-3e2ac4f349f6?w=900&h=600&auto=format&fit=crop&q=80"
-                alt="Premium SUV on Kashmir mountain road"
-                loading="eager"
-              />
-              <div className="hero-img-badge">
-                <div className="badge-n">₹1,800</div>
-                <div className="badge-l">Starting per day</div>
               </div>
             </div>
           </div>

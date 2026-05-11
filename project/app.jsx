@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Nav, Hero, Marquee, Stats, Fleet, Routes, Packages, Drivers, B2B, Testimonials, FAQ, Contact, Footer, TweaksPanel, useTweaks, TweakSection, TweakSlider, TweakRadio */
+/* global React, ReactDOM, Nav, Hero, Marquee, Stats, Fleet, Routes, Packages, Drivers, B2B, Testimonials, FAQ, Contact, Footer, ScrollCar, TweaksPanel, useTweaks, TweakSection, TweakSlider, TweakRadio */
 const { useEffect } = React;
 
 function App(){
@@ -32,6 +32,8 @@ function App(){
       <FAQ/>
       <Contact/>
       <Footer/>
+
+      <ScrollCar/>
 
       <TweaksPanel title="Tweaks">
         <TweakSection label="3D Intensity">

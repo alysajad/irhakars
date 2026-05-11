@@ -648,6 +648,85 @@ function Footer(){
   );
 }
 
+// ============== SCROLL CAR ==============
+function ScrollCar() {
+  const carRef = useRef(null);
+  const pathRef = useRef(null);
+
+  const d = 'M 34 4 C 54 100, 14 200, 34 330 C 54 460, 14 560, 34 670 C 52 740, 22 770, 34 796';
+
+  useEffect(() => {
+    const path = pathRef.current;
+    if (!path) return;
+    const totalLen = path.getTotalLength();
+    let rafId;
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll, 1)) : 0;
+        const len = progress * totalLen;
+        const pt  = path.getPointAtLength(len);
+        const pt2 = path.getPointAtLength(Math.min(len + 12, totalLen));
+        const angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * (180 / Math.PI) + 90;
+        if (carRef.current) {
+          carRef.current.setAttribute('transform',
+            `translate(${pt.x - 9},${pt.y - 15}) rotate(${angle},9,15)`);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(rafId); };
+  }, []);
+
+  return (
+    <div className="scroll-car-rail">
+      <svg viewBox="0 0 68 800" preserveAspectRatio="none"
+           xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%'}}>
+        {/* Road base shadow */}
+        <path d={d} fill="none" stroke="rgba(0,0,0,.12)" strokeWidth="22" strokeLinecap="round"/>
+        {/* Road surface */}
+        <path d={d} fill="none" stroke="rgba(30,50,48,.18)" strokeWidth="18" strokeLinecap="round"/>
+        {/* Road edge highlight */}
+        <path d={d} fill="none" stroke="rgba(0,161,155,.22)" strokeWidth="18.5" strokeLinecap="round"/>
+        {/* Centre dashes */}
+        <path d={d} fill="none" stroke="rgba(0,161,155,.3)" strokeWidth="1.2"
+              strokeDasharray="10 10" strokeLinecap="round"/>
+        {/* Invisible reference path for getPointAtLength */}
+        <path ref={pathRef} d={d} fill="none" stroke="none" strokeWidth="0"/>
+        {/* Car — positioned by JS, drawn with front at y=0 (top) */}
+        <g ref={carRef}>
+          {/* Drop shadow */}
+          <ellipse cx="10" cy="17" rx="8" ry="12" fill="rgba(0,0,0,.18)" transform="translate(0,3)"/>
+          {/* Body */}
+          <rect x="1" y="1" width="16" height="28" rx="5" fill="var(--teal)"/>
+          {/* Roof highlight */}
+          <rect x="4" y="5" width="10" height="9" rx="3" fill="rgba(255,255,255,.42)"/>
+          {/* Rear screen */}
+          <rect x="4" y="18" width="10" height="6" rx="2" fill="rgba(255,255,255,.28)"/>
+          {/* Body sheen */}
+          <rect x="1" y="1" width="5" height="28" rx="4" fill="rgba(255,255,255,.08)"/>
+          {/* Wheels */}
+          <ellipse cx="3"  cy="9"  rx="2.5" ry="3.2" fill="#0d2220"/>
+          <ellipse cx="15" cy="9"  rx="2.5" ry="3.2" fill="#0d2220"/>
+          <ellipse cx="3"  cy="21" rx="2.5" ry="3.2" fill="#0d2220"/>
+          <ellipse cx="15" cy="21" rx="2.5" ry="3.2" fill="#0d2220"/>
+          {/* Headlights */}
+          <ellipse cx="5.5" cy="2"  rx="2"   ry="1"   fill="rgba(255,235,100,.95)"/>
+          <ellipse cx="12.5" cy="2" rx="2"   ry="1"   fill="rgba(255,235,100,.95)"/>
+          {/* Taillights */}
+          <ellipse cx="5.5"  cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)"/>
+          <ellipse cx="12.5" cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)"/>
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+window.ScrollCar = ScrollCar;
 window.Marquee = Marquee;
 window.Stats = Stats;
 window.Fleet = Fleet;
