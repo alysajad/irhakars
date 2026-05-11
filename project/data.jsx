@@ -1,27 +1,40 @@
 /* global React */
 // ============== DATA ==============
+
+// Unsplash stock photos mapped by vehicle type — swap with real Irha Kars photos when available
+const CAR_IMGS = {
+  hatch:   'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=640&h=420&auto=format&fit=crop&q=80',
+  sedan:   'https://images.unsplash.com/photo-1502877338535-766e1452684a?w=640&h=420&auto=format&fit=crop&q=80',
+  suv:     'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=640&h=420&auto=format&fit=crop&q=80',
+  suv2:    'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=640&h=420&auto=format&fit=crop&q=80',
+  luxury:  'https://images.unsplash.com/photo-1583121274602-3e2ac4f349f6?w=640&h=420&auto=format&fit=crop&q=80',
+  tempo:   'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=640&h=420&auto=format&fit=crop&q=80',
+  bus:     'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=640&h=420&auto=format&fit=crop&q=80',
+  sleeper: 'https://images.unsplash.com/photo-1601629665203-f9f2b8d07d39?w=640&h=420&auto=format&fit=crop&q=80',
+};
+
 const CARS = [
-  { name:'Swift',           cat:'Hatchback', type:'hatch', seats:4, bags:2, ac:true, trans:'Manual',    price:1800, tag:'Compact' },
-  { name:'Amaze',           cat:'Sedan',     type:'sedan', seats:4, bags:3, ac:true, trans:'Manual',    price:2200, tag:'Sedan' },
-  { name:'Galanza',         cat:'Sedan',     type:'sedan', seats:4, bags:3, ac:true, trans:'Manual',    price:2400, tag:'Sedan' },
-  { name:'Ertiga',          cat:'MUV',       type:'suv',   seats:6, bags:4, ac:true, trans:'Manual',    price:2800, tag:'Family' },
-  { name:'Urbinia',         cat:'MUV',       type:'suv',   seats:6, bags:4, ac:true, trans:'Auto',      price:3200, tag:'Family' },
-  { name:'Innova',          cat:'SUV',       type:'suv',   seats:7, bags:5, ac:true, trans:'Manual',    price:3600, tag:'Popular' },
-  { name:'Innova Crysta',   cat:'SUV',       type:'suv',   seats:7, bags:5, ac:true, trans:'Auto',      price:4200, tag:'Premium' },
-  { name:'Fortuner 4×4',    cat:'SUV',       type:'suv',   seats:7, bags:5, ac:true, trans:'Auto 4×4',  price:6500, tag:'Luxury' },
-  { name:'12 Seater Tempo', cat:'Tempo',     type:'tempo', seats:12,bags:10,ac:true, trans:'Manual',    price:4500, tag:'Group' },
-  { name:'17 Seater Tempo', cat:'Tempo',     type:'tempo', seats:17,bags:14,ac:true, trans:'Manual',    price:5800, tag:'Group' },
-  { name:'20 Seater Tempo', cat:'Tempo',     type:'tempo', seats:20,bags:18,ac:true, trans:'Manual',    price:6800, tag:'Group' },
-  { name:'26 Seater Tempo', cat:'Tempo',     type:'tempo', seats:26,bags:22,ac:true, trans:'Manual',    price:8500, tag:'Large' },
-  { name:'27 Seater Bus',   cat:'Bus',       type:'bus',   seats:27,bags:25,ac:true, trans:'Manual',    price:9200, tag:'Coach' },
-  { name:'37 Seater Bus',   cat:'Bus',       type:'bus',   seats:37,bags:34,ac:true, trans:'Manual',    price:11500,tag:'Coach' },
-  { name:'Volvo Sleeper 9600',cat:'Sleeper', type:'sleeper',seats:36,bags:36,ac:true, trans:'Manual',   price:18500,tag:'Overnight' },
+  { name:'Swift',           cat:'Hatchback', type:'hatch',   seats:4,  bags:2,  ac:true, trans:'Manual',    price:1800, tag:'Compact',   img: CAR_IMGS.hatch   },
+  { name:'Amaze',           cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2200, tag:'Sedan',     img: CAR_IMGS.sedan   },
+  { name:'Galanza',         cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2400, tag:'Sedan',     img: CAR_IMGS.sedan   },
+  { name:'Ertiga',          cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Manual',    price:2800, tag:'Family',    img: CAR_IMGS.suv     },
+  { name:'Urbinia',         cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Auto',      price:3200, tag:'Family',    img: CAR_IMGS.suv     },
+  { name:'Innova',          cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Manual',    price:3600, tag:'Popular',   img: CAR_IMGS.suv2    },
+  { name:'Innova Crysta',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto',      price:4200, tag:'Premium',   img: CAR_IMGS.suv2    },
+  { name:'Fortuner 4×4',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto 4×4',  price:6500, tag:'Luxury',    img: CAR_IMGS.luxury  },
+  { name:'12 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:12, bags:10, ac:true, trans:'Manual',    price:4500, tag:'Group',     img: CAR_IMGS.tempo   },
+  { name:'17 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:17, bags:14, ac:true, trans:'Manual',    price:5800, tag:'Group',     img: CAR_IMGS.tempo   },
+  { name:'20 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:20, bags:18, ac:true, trans:'Manual',    price:6800, tag:'Group',     img: CAR_IMGS.tempo   },
+  { name:'26 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:26, bags:22, ac:true, trans:'Manual',    price:8500, tag:'Large',     img: CAR_IMGS.tempo   },
+  { name:'27 Seater Bus',   cat:'Bus',       type:'bus',     seats:27, bags:25, ac:true, trans:'Manual',    price:9200, tag:'Coach',     img: CAR_IMGS.bus     },
+  { name:'37 Seater Bus',   cat:'Bus',       type:'bus',     seats:37, bags:34, ac:true, trans:'Manual',    price:11500,tag:'Coach',     img: CAR_IMGS.bus     },
+  { name:'Volvo Sleeper 9600', cat:'Sleeper', type:'sleeper',seats:36, bags:36, ac:true, trans:'Manual',    price:18500,tag:'Overnight', img: CAR_IMGS.sleeper },
 ];
 
 const ROUTES = [
   { num:'01', from:'Srinagar', to:'Pahalgam · Gulmarg · Sonmarg', dist:'90–200 km', dur:'Day trip → 3 days', tag:'Within Kashmir', kind:'kashmir' },
-  { num:'02', from:'Jammu', to:'Patnitop · Vaishno Devi · Katra', dist:'60–250 km', dur:'1–2 days', tag:'Jammu region', kind:'jammu' },
-  { num:'03', from:'Delhi', to:'Srinagar via Kashmir Valley', dist:'~850 km', dur:'2 days · 1 night', tag:'Long haul', kind:'delhi' },
+  { num:'02', from:'Jammu',    to:'Patnitop · Vaishno Devi · Katra', dist:'60–250 km', dur:'1–2 days', tag:'Jammu region', kind:'jammu' },
+  { num:'03', from:'Delhi',    to:'Srinagar via Kashmir Valley', dist:'~850 km', dur:'2 days · 1 night', tag:'Long haul', kind:'delhi' },
 ];
 
 const PACKAGES = [
@@ -31,8 +44,8 @@ const PACKAGES = [
     cta:'Book a day trip', featured:false,
   },
   {
-    tier:'MOST BOOKED', name:'Kashmir 4N5D', price:'14,800', sub:'package, on twin sharing',
-    features:['Srinagar · Gulmarg · Pahalgam','Innova / Crysta / Ertiga','Local sightseeing + transfers','Experienced driver-guide','Hotel pickup & drop','Customisable itinerary'],
+    tier:'MOST BOOKED', name:'Kashmir 4N5D', price:'14,800', sub:'package, twin sharing',
+    features:['Srinagar · Gulmarg · Pahalgam','Innova / Crysta / Ertiga','Sightseeing + transfers','Experienced driver-guide','Hotel pickup & drop','Customisable itinerary'],
     cta:'Plan this trip', featured:true,
   },
   {
@@ -43,14 +56,14 @@ const PACKAGES = [
 ];
 
 const DRIVERS = [
-  { name:'Showkat Ahmad',  role:'Senior · Kashmir Valley',    years:18, skills:['Urdu','Hindi','English','Kashmiri'], ini:'SA' },
-  { name:'Imtiyaz Bhat',   role:'Highway · Delhi route',      years:12, skills:['Hindi','English','Punjabi'], ini:'IB' },
-  { name:'Bilal Mir',      role:'Mountain · Sonmarg/Zojila',  years:15, skills:['Urdu','Hindi','Kashmiri'], ini:'BM' },
-  { name:'Tariq Wani',     role:'Tempo · 17/20 seater',       years:10, skills:['Hindi','Urdu','English'], ini:'TW' },
-  { name:'Javed Lone',     role:'Coach · Jammu corridor',     years:14, skills:['Hindi','Dogri','Urdu'], ini:'JL' },
-  { name:'Aamir Ganie',    role:'Sedan · City',               years:8,  skills:['Urdu','English'], ini:'AG' },
-  { name:'Rouf Dar',       role:'Volvo Sleeper · Long haul',  years:16, skills:['Hindi','Punjabi','Urdu'], ini:'RD' },
-  { name:'Sajad Para',     role:'Fortuner 4×4 · Off-road',    years:11, skills:['Urdu','English','Hindi'], ini:'SP' },
+  { name:'Showkat Ahmad', role:'Senior · Kashmir Valley',    years:18, skills:['Urdu','Hindi','English','Kashmiri'], ini:'SA' },
+  { name:'Imtiyaz Bhat',  role:'Highway · Delhi route',      years:12, skills:['Hindi','English','Punjabi'],        ini:'IB' },
+  { name:'Bilal Mir',     role:'Mountain · Sonmarg/Zojila',  years:15, skills:['Urdu','Hindi','Kashmiri'],          ini:'BM' },
+  { name:'Tariq Wani',    role:'Tempo · 17/20 seater',       years:10, skills:['Hindi','Urdu','English'],           ini:'TW' },
+  { name:'Javed Lone',    role:'Coach · Jammu corridor',     years:14, skills:['Hindi','Dogri','Urdu'],             ini:'JL' },
+  { name:'Aamir Ganie',   role:'Sedan · City',               years:8,  skills:['Urdu','English'],                  ini:'AG' },
+  { name:'Rouf Dar',      role:'Volvo Sleeper · Long haul',  years:16, skills:['Hindi','Punjabi','Urdu'],           ini:'RD' },
+  { name:'Sajad Para',    role:'Fortuner 4×4 · Off-road',    years:11, skills:['Urdu','English','Hindi'],           ini:'SP' },
 ];
 
 const TESTIMONIALS = [
