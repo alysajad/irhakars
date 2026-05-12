@@ -54,13 +54,13 @@ function StatCell({ n, sup, label }) {
 // ============== WA icon ==============
 const WaIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.296-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.296-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
   </svg>
 );
 
 // ============== MARQUEE ==============
-function Marquee(){
-  const items = ['Srinagar','Pahalgam','Gulmarg','Sonmarg','Jammu','Patnitop','Vaishno Devi','Delhi','Katra','Leh–Ladakh','Doodhpathri','Yusmarg'];
+function Marquee() {
+  const items = ['Srinagar', 'Pahalgam', 'Gulmarg', 'Sonmarg', 'Jammu', 'Patnitop', 'Vaishno Devi', 'Delhi', 'Katra', 'Leh–Ladakh', 'Doodhpathri', 'Yusmarg'];
   return (
     <div className="marquee">
       <div className="marquee-track">
@@ -75,19 +75,19 @@ function Marquee(){
 }
 
 // ============== STATS ==============
-function Stats(){
+function Stats() {
   return (
     <section className="stats-strip">
-      <StatCell n={15} sup="+" label="Vehicle types"/>
-      <StatCell n={40} sup="+" label="Experienced drivers"/>
-      <StatCell n={17} sup="yrs" label="Kashmir route mastery"/>
-      <StatCell n={24} sup="/7" label="Control room support"/>
+      <StatCell n={15} sup="+" label="Vehicle types" />
+      <StatCell n={40} sup="+" label="Experienced drivers" />
+      <StatCell n={17} sup="yrs" label="Kashmir route mastery" />
+      <StatCell n={24} sup="/7" label="Control room support" />
     </section>
   );
 }
 
 // ============== FLEET (horizontal scroll showcase) ==============
-function CarCard({ c }){
+function CarCard({ c }) {
   const ref = useRef(null);
 
   const onMove = useCallback((e) => {
@@ -124,6 +124,7 @@ function CarCard({ c }){
           src={c.img}
           alt={c.name}
           loading="lazy"
+          decoding="async"
           onError={(e) => { e.target.style.display = 'none'; }}
         />
         <div className="car-img-tag">{c.tag}</div>
@@ -142,7 +143,7 @@ function CarCard({ c }){
         <div className="car-footer">
           <div className="car-price">₹{c.price.toLocaleString('en-IN')}<small>/day</small></div>
           <button className="car-book-btn" onClick={book}>
-            <WaIcon/> Book
+            <WaIcon /> Book
           </button>
         </div>
       </div>
@@ -150,7 +151,7 @@ function CarCard({ c }){
   );
 }
 
-function Fleet(){
+function Fleet() {
   useReveal();
   const trackRef = useRef(null);
 
@@ -199,18 +200,18 @@ function Fleet(){
   }, []);
 
   return (
-    <section className="section" id="fleet" style={{background:'var(--sand-3)'}}>
+    <section className="section" id="fleet" style={{ background: 'var(--sand-3)' }}>
       <div className="wrap">
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>The Fleet</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Fifteen vehicles.<br/><span className="accent">One promise.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Fifteen vehicles.<br /><span className="accent">One promise.</span></h2>
           </div>
           <p className="s-desc">From a Swift for two through to a 37-seater coach and a Volvo sleeper — pick the format that fits your trip.</p>
         </div>
 
-        <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', flexWrap:'wrap', gap:12}}>
-          <div className="filter-row reveal" style={{margin:0}}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+          <div className="filter-row reveal" style={{ margin: 0 }}>
             {cats.map(([cat, n]) => (
               <button key={cat} className={`chip ${active === cat ? 'active' : ''}`} onClick={() => { setActive(cat); if (trackRef.current) trackRef.current.scrollLeft = 0; }}>
                 {cat}<span className="count">{n}</span>
@@ -224,10 +225,10 @@ function Fleet(){
         </div>
 
         <div ref={trackRef} className="fleet-track">
-          {list.map(c => <CarCard key={c.name} c={c}/>)}
+          {list.map(c => <CarCard key={c.name} c={c} />)}
         </div>
 
-        <p style={{textAlign:'center', fontSize:13, color:'var(--muted)', marginTop:8}}>
+        <p style={{ textAlign: 'center', fontSize: 13, color: 'var(--muted)', marginTop: 8 }}>
           Drag or use arrows to explore · Click any card to book on WhatsApp
         </p>
       </div>
@@ -242,7 +243,7 @@ function RouteMapPreview({ route }) {
     .slice(1, -1)
     .map(w => `${w.lat},${w.lng}`)
     .join('|');
-  
+
   const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=roadmap${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
 
   return (
@@ -257,7 +258,7 @@ function RouteMapPreview({ route }) {
       ></iframe>
       <div className="route-map-overlay">
         <span className="route-map-overlay-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3l6 6-6 6M9 21l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3l6 6-6 6M9 21l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
         </span>
         <span>View Full Map</span>
       </div>
@@ -270,7 +271,7 @@ function RouteMapModal({ route, onClose }) {
     .slice(1, -1)
     .map(w => `${w.lat},${w.lng}`)
     .join('|');
-  
+
   const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=roadmap${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
 
   // Close on Escape
@@ -286,7 +287,7 @@ function RouteMapModal({ route, onClose }) {
       <div className="route-modal" onClick={e => e.stopPropagation()}>
         {/* Close button */}
         <button className="route-modal-close" onClick={onClose} aria-label="Close">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
         </button>
 
         {/* Header */}
@@ -315,7 +316,7 @@ function RouteMapModal({ route, onClose }) {
         {/* Waypoints */}
         <div className="route-modal-waypoints">
           <div className="route-modal-wp-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="var(--teal)" strokeWidth="2"/><circle cx="12" cy="10" r="3" stroke="var(--teal)" strokeWidth="2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="var(--teal)" strokeWidth="2" /><circle cx="12" cy="10" r="3" stroke="var(--teal)" strokeWidth="2" /></svg>
             <span>Places along the way</span>
           </div>
           <div className="route-modal-wp-list">
@@ -323,9 +324,9 @@ function RouteMapModal({ route, onClose }) {
               <div className="route-modal-wp" key={i}>
                 <div className="route-modal-wp-dot">
                   {i === 0 ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8" /></svg>
                   ) : i === route.waypoints.length - 1 ? (
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="var(--teal)"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="var(--teal)" /><circle cx="12" cy="10" r="3" fill="#fff" /></svg>
                   ) : (
                     <div className="route-modal-wp-num">{i}</div>
                   )}
@@ -346,9 +347,9 @@ function RouteMapModal({ route, onClose }) {
           target="_blank"
           rel="noreferrer"
           className="cta-btn"
-          style={{alignSelf:'center',marginTop:16}}
+          style={{ alignSelf: 'center', marginTop: 16 }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
           Open in Google Maps
         </a>
       </div>
@@ -356,7 +357,7 @@ function RouteMapModal({ route, onClose }) {
   );
 }
 
-function Routes(){
+function Routes() {
   useReveal();
   const [selectedRoute, setSelectedRoute] = useState(null);
 
@@ -366,13 +367,13 @@ function Routes(){
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>Where we run</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Three corridors.<br/><span className="accent">All seasons.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Three corridors.<br /><span className="accent">All seasons.</span></h2>
           </div>
           <p className="s-desc">Kashmir to Kashmir. Jammu to Jammu. Delhi to Srinagar. Routes we drive in our sleep — quoted all-inclusive so you know the cost upfront.</p>
         </div>
         <div className="routes">
           {IRHA.ROUTES.map(r => (
-            <div className="route-card reveal" key={r.num} onClick={() => setSelectedRoute(r)} style={{cursor:'pointer'}}>
+            <div className="route-card reveal" key={r.num} onClick={() => setSelectedRoute(r)} style={{ cursor: 'pointer' }}>
               <div className="ribbon">{r.tag}</div>
               <div>
                 <div className="num">ROUTE {r.num}</div>
@@ -382,12 +383,12 @@ function Routes(){
                   <span className="to">{r.to}</span>
                 </div>
               </div>
-              <div className="map"><RouteMapPreview route={r}/></div>
+              <div className="map"><RouteMapPreview route={r} /></div>
               {/* Waypoint pills */}
               <div className="route-wp-pills">
                 {r.waypoints.slice(0, 4).map((wp, i) => (
                   <span className="route-wp-pill" key={i}>
-                    <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8"/></svg>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8" /></svg>
                     {wp.name}
                   </span>
                 ))}
@@ -395,11 +396,11 @@ function Routes(){
               </div>
               <div className="rinfo">
                 <div>
-                  <span style={{fontSize:11,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--muted)',fontWeight:600}}>Distance</span>
+                  <span style={{ fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 600 }}>Distance</span>
                   <b>{r.dist}</b>
                 </div>
-                <div style={{textAlign:'right'}}>
-                  <span style={{fontSize:11,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--muted)',fontWeight:600}}>Duration</span>
+                <div style={{ textAlign: 'right' }}>
+                  <span style={{ fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 600 }}>Duration</span>
                   <b>{r.dur}</b>
                 </div>
               </div>
@@ -415,19 +416,19 @@ function Routes(){
 }
 
 // ============== PACKAGES ==============
-function Packages(){
+function Packages() {
   useReveal();
   const book = (p) => {
     const msg = `Hi Irha Kars,%0AI%27m interested in the ${encodeURIComponent(p.name)} package.%0APlease share details.`;
     window.open(`https://wa.me/917006709612?text=${msg}`, '_blank');
   };
   return (
-    <section className="section" id="packages" style={{background:'var(--sand-2)'}}>
+    <section className="section" id="packages" style={{ background: 'var(--sand-2)' }}>
       <div className="wrap">
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>Packages &amp; Pricing</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Day trips,<br/>full holidays,<br/><span className="accent">B2B fleets.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Day trips,<br />full holidays,<br /><span className="accent">B2B fleets.</span></h2>
           </div>
           <p className="s-desc">Transparent rates that include the driver. Customise any package — extend a day, swap a vehicle, add a stop.</p>
         </div>
@@ -442,11 +443,11 @@ function Packages(){
               </ul>
               <button
                 className={`cta-btn pick ${p.featured ? '' : 'ghost'}`}
-                style={p.featured ? {marginTop:'auto'} : {marginTop:'auto'}}
+                style={p.featured ? { marginTop: 'auto' } : { marginTop: 'auto' }}
                 onClick={() => book(p)}
               >
                 {p.cta}
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             </div>
           ))}
@@ -473,13 +474,15 @@ function DriverCard({ d, index }) {
             src={d.photo}
             alt={d.name}
             className="driver-photo-img"
+            loading="lazy"
+            decoding="async"
             onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
           />
         ) : null}
-        <div className="driver-photo-placeholder" style={d.photo ? {display:'none'} : {}}>
+        <div className="driver-photo-placeholder" style={d.photo ? { display: 'none' } : {}}>
           <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="40" cy="30" r="14" fill="rgba(0,161,155,.25)"/>
-            <ellipse cx="40" cy="68" rx="22" ry="16" fill="rgba(0,161,155,.2)"/>
+            <circle cx="40" cy="30" r="14" fill="rgba(0,161,155,.25)" />
+            <ellipse cx="40" cy="68" rx="22" ry="16" fill="rgba(0,161,155,.2)" />
           </svg>
           <span className="driver-photo-ini">{d.ini}</span>
         </div>
@@ -503,7 +506,7 @@ function DriverCard({ d, index }) {
   );
 }
 
-function Drivers(){
+function Drivers() {
   useReveal();
   return (
     <section className="section" id="drivers">
@@ -511,7 +514,7 @@ function Drivers(){
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>The People Behind the Wheel</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Forty drivers.<br/><span className="accent">Every road learned by heart.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Forty drivers.<br /><span className="accent">Every road learned by heart.</span></h2>
           </div>
           <p className="s-desc">Most Kashmir tour problems are driver problems. Ours are on payroll, trained on every corridor, fluent in the languages your guests speak.</p>
         </div>
@@ -574,13 +577,15 @@ function TeamPhotoCard({ member, className, hoveredId, onHover }) {
           src={member.photo}
           alt={member.name}
           className="team-photo-card-img"
+          loading="lazy"
+          decoding="async"
           style={{
             filter: isActive ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.77)',
           }}
           onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
         />
       ) : null}
-      <div className="team-photo-card-fallback" style={member.photo ? {display:'none'} : {}}>
+      <div className="team-photo-card-fallback" style={member.photo ? { display: 'none' } : {}}>
         <span className="team-photo-card-ini">{member.ini}</span>
       </div>
     </div>
@@ -609,7 +614,7 @@ function TeamMemberRow({ member, hoveredId, onHover }) {
   );
 }
 
-function Team(){
+function Team() {
   useReveal();
   const [hoveredId, setHoveredId] = useState(null);
   const [showDrivers, setShowDrivers] = useState(false);
@@ -620,12 +625,12 @@ function Team(){
   const col3 = members.filter((_, i) => i % 3 === 2);
 
   return (
-    <section className="section" id="team" style={{background:'var(--sand-3)'}}>
+    <section className="section" id="team" style={{ background: 'var(--sand-3)' }}>
       <div className="wrap">
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>The Leadership</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Meet the team<br/><span className="accent">behind the wheel.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Meet the team<br /><span className="accent">behind the wheel.</span></h2>
           </div>
           <p className="s-desc">From the founder's vision to everyday operations — the people who make every trip seamless.</p>
         </div>
@@ -688,15 +693,15 @@ function Team(){
         </div>
 
         {/* Meet the Drivers CTA */}
-        <div className="team-drivers-cta reveal" style={{marginTop:56, textAlign:'center'}}>
+        <div className="team-drivers-cta reveal" style={{ marginTop: 56, textAlign: 'center' }}>
           <button
             className="cta-btn"
             onClick={() => setShowDrivers(!showDrivers)}
-            style={{margin:'0 auto'}}
+            style={{ margin: '0 auto' }}
           >
             {showDrivers ? 'Hide Drivers' : 'Meet Our Drivers'}
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{transform: showDrivers ? 'rotate(90deg)' : 'none', transition:'transform .3s'}}>
-              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ transform: showDrivers ? 'rotate(90deg)' : 'none', transition: 'transform .3s' }}>
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>
@@ -709,15 +714,15 @@ function Team(){
 }
 
 // ============== B2B ==============
-function B2B(){
+function B2B() {
   useReveal();
   return (
-    <section className="section" id="b2b" style={{paddingTop:0}}>
+    <section className="section" id="b2b" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="b2b reveal">
           <div className="left">
             <div className="eyebrow"><span className="dot"></span>For Tour &amp; Travel Operators</div>
-            <h3 style={{marginTop:20}}>The Kashmir leg of <span className="accent">your itinerary,</span> handled.</h3>
+            <h3 style={{ marginTop: 20 }}>The Kashmir leg of <span className="accent">your itinerary,</span> handled.</h3>
             <p>We are the silent fleet behind dozens of travel agencies running groups into Kashmir. White-label transport, pan-India billing, dedicated co-ordinator.</p>
             <ul className="bullets">
               <li>Fleet of 15+ vehicles, scaled per group</li>
@@ -733,31 +738,31 @@ function B2B(){
               target="_blank" rel="noreferrer"
             >
               Open a B2B account
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </a>
           </div>
           <div className="right">
-            <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style={{width:'100%',maxWidth:500,opacity:.85}}>
+            <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', maxWidth: 500, opacity: .85 }}>
               <defs>
                 <linearGradient id="b2bg" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="rgba(255,255,255,.2)"/>
-                  <stop offset="1" stopColor="rgba(255,255,255,.05)"/>
+                  <stop offset="0" stopColor="rgba(255,255,255,.2)" />
+                  <stop offset="1" stopColor="rgba(255,255,255,.05)" />
                 </linearGradient>
               </defs>
               <g transform="translate(20,215)">
-                <rect x="0" y="0" width="380" height="56" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1"/>
+                <rect x="0" y="0" width="380" height="56" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
                 <text x="20" y="36" fontFamily="DM Sans, sans-serif" fontSize="18" fill="#fff" fontWeight="600">27-SEATER · 37-SEATER · VOLVO</text>
               </g>
               <g transform="translate(50,148)">
-                <rect x="0" y="0" width="320" height="52" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1"/>
+                <rect x="0" y="0" width="320" height="52" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
                 <text x="18" y="33" fontFamily="DM Sans, sans-serif" fontSize="17" fill="#fff" fontWeight="600">TEMPO 12 · 17 · 20 · 26</text>
               </g>
               <g transform="translate(80,90)">
-                <rect x="0" y="0" width="260" height="48" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1"/>
+                <rect x="0" y="0" width="260" height="48" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
                 <text x="18" y="30" fontFamily="DM Sans, sans-serif" fontSize="16" fill="#fff" fontWeight="600">INNOVA · CRYSTA · ERTIGA</text>
               </g>
               <g transform="translate(110,40)">
-                <rect x="0" y="0" width="200" height="40" rx="10" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.3)" strokeWidth="1"/>
+                <rect x="0" y="0" width="200" height="40" rx="10" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.3)" strokeWidth="1" />
                 <text x="18" y="26" fontFamily="DM Sans, sans-serif" fontSize="14" fill="#fff" fontWeight="700">SWIFT · AMAZE · SEDAN</text>
               </g>
             </svg>
@@ -769,15 +774,15 @@ function B2B(){
 }
 
 // ============== TESTIMONIALS ==============
-function Testimonials(){
+function Testimonials() {
   useReveal();
   return (
-    <section className="section" id="testimonials" style={{background:'var(--sand-2)'}}>
+    <section className="section" id="testimonials" style={{ background: 'var(--sand-2)' }}>
       <div className="wrap">
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>Travellers Say</div>
-            <h2 className="display s-title" style={{marginTop:16}}>Earned on<br/><span className="accent">every road.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Earned on<br /><span className="accent">every road.</span></h2>
           </div>
         </div>
         <div className="testimonials">
@@ -798,16 +803,16 @@ function Testimonials(){
 }
 
 // ============== FAQ ==============
-function FAQ(){
+function FAQ() {
   useReveal();
   const [open, setOpen] = useState(0);
   return (
     <section className="section" id="faq">
       <div className="wrap">
-        <div className="s-head reveal" style={{justifyContent:'center',textAlign:'center'}}>
-          <div style={{margin:'0 auto'}}>
-            <div className="eyebrow" style={{textAlign:'center'}}><span className="dot"></span>FAQ</div>
-            <h2 className="display s-title" style={{marginTop:16,textAlign:'center'}}>Questions,<br/><span className="accent">answered.</span></h2>
+        <div className="s-head reveal" style={{ justifyContent: 'center', textAlign: 'center' }}>
+          <div style={{ margin: '0 auto' }}>
+            <div className="eyebrow" style={{ textAlign: 'center' }}><span className="dot"></span>FAQ</div>
+            <h2 className="display s-title" style={{ marginTop: 16, textAlign: 'center' }}>Questions,<br /><span className="accent">answered.</span></h2>
           </div>
         </div>
         <div className="faq">
@@ -827,19 +832,19 @@ function FAQ(){
 }
 
 // ============== CONTACT ==============
-function Contact(){
+function Contact() {
   useReveal();
   return (
     <section className="section" id="contact">
       <div className="wrap">
         <div className="contact reveal">
           <div>
-            <div className="eyebrow" style={{color:'rgba(255,255,255,.75)'}}><span className="dot" style={{background:'rgba(255,255,255,.75)'}}></span>Talk to us</div>
-            <h3 style={{marginTop:18}}>Pick a car.<br/>We'll pick you up.</h3>
+            <div className="eyebrow" style={{ color: 'rgba(255,255,255,.75)' }}><span className="dot" style={{ background: 'rgba(255,255,255,.75)' }}></span>Talk to us</div>
+            <h3 style={{ marginTop: 18 }}>Pick a car.<br />We'll pick you up.</h3>
             <p className="lead">WhatsApp is fastest — share your dates, route and group size and we'll revert with availability and a tariff in minutes.</p>
             <div className="actions">
               <a className="btn wa" href="https://wa.me/917006709612?text=Hi%20Irha%20Kars" target="_blank" rel="noreferrer">
-                <WaIcon/> WhatsApp · 7006 709 612
+                <WaIcon /> WhatsApp · 7006 709 612
               </a>
               <a className="btn" href="tel:+917006709612">Call now</a>
               <a className="btn" href="mailto:irhakars72@gmail.com">Email us</a>
@@ -856,11 +861,11 @@ function Contact(){
             </a>
             <a className="crow" href="mailto:irhakars72@gmail.com">
               <div className="cl">Email</div>
-              <div className="cv" style={{fontSize:18}}>irhakars72@gmail.com</div>
+              <div className="cv" style={{ fontSize: 18 }}>irhakars72@gmail.com</div>
             </a>
             <div className="crow">
               <div className="cl">Address</div>
-              <div className="cv" style={{fontSize:18,lineHeight:1.3}}>Babdam, Srinagar,<br/>Kashmir 190001</div>
+              <div className="cv" style={{ fontSize: 18, lineHeight: 1.3 }}>Babdam, Srinagar,<br />Kashmir 190001</div>
             </div>
           </div>
         </div>
@@ -870,18 +875,18 @@ function Contact(){
 }
 
 // ============== FOOTER ==============
-function Footer(){
+function Footer() {
   return (
     <footer>
       <div className="wrap">
         <div className="footer-grid">
           <div className="footer-brand">
-            <div style={{display:'flex',alignItems:'center',gap:10}}>
-              <Logo size={34}/>
-              <div style={{fontFamily:"'Helvetica Neue', Helvetica, Arial, sans-serif",fontSize:20,fontWeight:800,color:'#fff',letterSpacing:'.06em'}}>IRHA KARS</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Logo size={34} />
+              <div style={{ fontFamily: "'Proxima Nova Condensed', 'Proxima Nova', 'Arial Narrow', sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '.06em' }}>IRHA KARS</div>
             </div>
             <p>All-India tourist transport. Sedans, SUVs, tempos, buses and Volvo sleepers — every vehicle with a driver who knows the road.</p>
-            <p style={{color:'rgba(255,255,255,.35)',fontSize:13}}>Babdam, Srinagar, Kashmir 190001 · www.irhakars.in</p>
+            <p style={{ color: 'rgba(255,255,255,.35)', fontSize: 13 }}>Babdam, Srinagar, Kashmir 190001 · www.irhakars.in</p>
           </div>
           <div>
             <h5>Fleet</h5>
@@ -942,7 +947,7 @@ function ScrollCar() {
         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
         const progress = maxScroll > 0 ? Math.max(0, Math.min(window.scrollY / maxScroll, 1)) : 0;
         const len = progress * totalLen;
-        const pt  = path.getPointAtLength(len);
+        const pt = path.getPointAtLength(len);
         const pt2 = path.getPointAtLength(Math.min(len + 12, totalLen));
         const angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * (180 / Math.PI) + 90;
         if (carRef.current) {
@@ -960,41 +965,41 @@ function ScrollCar() {
   return (
     <div className="scroll-car-rail">
       <svg viewBox="0 0 68 800" preserveAspectRatio="none"
-           xmlns="http://www.w3.org/2000/svg" style={{width:'100%',height:'100%'}}>
+        xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
         {/* Road base shadow */}
-        <path d={d} fill="none" stroke="rgba(0,0,0,.12)" strokeWidth="22" strokeLinecap="round"/>
+        <path d={d} fill="none" stroke="rgba(0,0,0,.12)" strokeWidth="22" strokeLinecap="round" />
         {/* Road surface */}
-        <path d={d} fill="none" stroke="rgba(30,50,48,.18)" strokeWidth="18" strokeLinecap="round"/>
+        <path d={d} fill="none" stroke="rgba(30,50,48,.18)" strokeWidth="18" strokeLinecap="round" />
         {/* Road edge highlight */}
-        <path d={d} fill="none" stroke="rgba(0,161,155,.22)" strokeWidth="18.5" strokeLinecap="round"/>
+        <path d={d} fill="none" stroke="rgba(0,161,155,.22)" strokeWidth="18.5" strokeLinecap="round" />
         {/* Centre dashes */}
         <path d={d} fill="none" stroke="rgba(0,161,155,.3)" strokeWidth="1.2"
-              strokeDasharray="10 10" strokeLinecap="round"/>
+          strokeDasharray="10 10" strokeLinecap="round" />
         {/* Invisible reference path for getPointAtLength */}
-        <path ref={pathRef} d={d} fill="none" stroke="none" strokeWidth="0"/>
+        <path ref={pathRef} d={d} fill="none" stroke="none" strokeWidth="0" />
         {/* Car — positioned by JS, drawn with front at y=0 (top) */}
         <g ref={carRef}>
           {/* Drop shadow */}
-          <ellipse cx="10" cy="17" rx="8" ry="12" fill="rgba(0,0,0,.18)" transform="translate(0,3)"/>
+          <ellipse cx="10" cy="17" rx="8" ry="12" fill="rgba(0,0,0,.18)" transform="translate(0,3)" />
           {/* Body */}
-          <rect x="1" y="1" width="16" height="28" rx="5" fill="var(--teal)"/>
+          <rect x="1" y="1" width="16" height="28" rx="5" fill="var(--teal)" />
           {/* Roof highlight */}
-          <rect x="4" y="5" width="10" height="9" rx="3" fill="rgba(255,255,255,.42)"/>
+          <rect x="4" y="5" width="10" height="9" rx="3" fill="rgba(255,255,255,.42)" />
           {/* Rear screen */}
-          <rect x="4" y="18" width="10" height="6" rx="2" fill="rgba(255,255,255,.28)"/>
+          <rect x="4" y="18" width="10" height="6" rx="2" fill="rgba(255,255,255,.28)" />
           {/* Body sheen */}
-          <rect x="1" y="1" width="5" height="28" rx="4" fill="rgba(255,255,255,.08)"/>
+          <rect x="1" y="1" width="5" height="28" rx="4" fill="rgba(255,255,255,.08)" />
           {/* Wheels */}
-          <ellipse cx="3"  cy="9"  rx="2.5" ry="3.2" fill="#0d2220"/>
-          <ellipse cx="15" cy="9"  rx="2.5" ry="3.2" fill="#0d2220"/>
-          <ellipse cx="3"  cy="21" rx="2.5" ry="3.2" fill="#0d2220"/>
-          <ellipse cx="15" cy="21" rx="2.5" ry="3.2" fill="#0d2220"/>
+          <ellipse cx="3" cy="9" rx="2.5" ry="3.2" fill="#0d2220" />
+          <ellipse cx="15" cy="9" rx="2.5" ry="3.2" fill="#0d2220" />
+          <ellipse cx="3" cy="21" rx="2.5" ry="3.2" fill="#0d2220" />
+          <ellipse cx="15" cy="21" rx="2.5" ry="3.2" fill="#0d2220" />
           {/* Headlights */}
-          <ellipse cx="5.5" cy="2"  rx="2"   ry="1"   fill="rgba(255,235,100,.95)"/>
-          <ellipse cx="12.5" cy="2" rx="2"   ry="1"   fill="rgba(255,235,100,.95)"/>
+          <ellipse cx="5.5" cy="2" rx="2" ry="1" fill="rgba(255,235,100,.95)" />
+          <ellipse cx="12.5" cy="2" rx="2" ry="1" fill="rgba(255,235,100,.95)" />
           {/* Taillights */}
-          <ellipse cx="5.5"  cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)"/>
-          <ellipse cx="12.5" cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)"/>
+          <ellipse cx="5.5" cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)" />
+          <ellipse cx="12.5" cy="28.5" rx="1.8" ry=".9" fill="rgba(255,50,50,.85)" />
         </g>
       </svg>
     </div>
@@ -1014,3 +1019,4 @@ window.Testimonials = Testimonials;
 window.FAQ = FAQ;
 window.Contact = Contact;
 window.Footer = Footer;
+

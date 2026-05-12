@@ -136,6 +136,8 @@ function Hero(){
           src="hero_bg.png"
           alt="Premium SUV in Kashmir"
           loading="eager"
+          fetchPriority="high"
+          decoding="async"
           onError={(e) => {
             if (!e.currentTarget.dataset.fallback) {
               e.currentTarget.dataset.fallback = '1';
@@ -245,3 +247,4 @@ function Hero(){
 
 window.Nav = Nav;
 window.Hero = Hero;
+
