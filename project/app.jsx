@@ -34,7 +34,8 @@ function AnimatedCar({ progress }) {
       <ellipse cx="28" cy="42" rx="2" ry="3" fill="rgba(255,50,50,.9)"/>
       <ellipse cx="28" cy="48" rx="2" ry="3" fill="rgba(255,50,50,.7)"/>
       {/* Front wheel */}
-      <g className="loading-wheel-spin">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 145 55" to="360 145 55" dur="0.4s" repeatCount="indefinite" />
         <circle cx="145" cy="55" r="13" fill="#1a2625"/>
         <circle cx="145" cy="55" r="10" fill="#2d3a39"/>
         <circle cx="145" cy="55" r="7" fill="#555" stroke="#777" strokeWidth="0.8"/>
@@ -46,7 +47,8 @@ function AnimatedCar({ progress }) {
         <line x1="150" y1="50" x2="140" y2="60" stroke="#666" strokeWidth="0.8"/>
       </g>
       {/* Rear wheel */}
-      <g className="loading-wheel-spin">
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 55 55" to="360 55 55" dur="0.4s" repeatCount="indefinite" />
         <circle cx="55" cy="55" r="13" fill="#1a2625"/>
         <circle cx="55" cy="55" r="10" fill="#2d3a39"/>
         <circle cx="55" cy="55" r="7" fill="#555" stroke="#777" strokeWidth="0.8"/>

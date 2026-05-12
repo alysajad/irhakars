@@ -243,7 +243,7 @@ function RouteMapPreview({ route }) {
     .map(w => `${w.lat},${w.lng}`)
     .join('|');
   
-  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=satellite${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
+  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=roadmap${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
 
   return (
     <div className="route-map-preview">
@@ -271,7 +271,7 @@ function RouteMapModal({ route, onClose }) {
     .map(w => `${w.lat},${w.lng}`)
     .join('|');
   
-  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=satellite${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
+  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=roadmap${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
 
   // Close on Escape
   useEffect(() => {

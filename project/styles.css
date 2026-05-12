@@ -160,9 +160,9 @@ a { color: inherit; text-decoration: none; }
   content: ''; position: absolute; inset: 0; z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(0,82,79,.65) 0%,
-    rgba(0,122,117,.45) 45%,
-    rgba(0,82,79,.75) 78%,
+    rgba(26,38,37,.6) 0%,
+    rgba(26,38,37,.35) 45%,
+    rgba(26,38,37,.7) 78%,
     var(--ink-2) 100%
   );
 }
