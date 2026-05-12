@@ -1,22 +1,99 @@
 /* global React */
 const { useEffect, useRef, useState } = React;
 
-// ============== LOGO ==============
-const Logo = ({ size = 32 }) => (
-  <svg viewBox="0 0 64 64" width={size} height={size} className="logo-mark" aria-label="Irha Kars">
-    <defs>
-      <linearGradient id="lg" x1="0" x2="1" y1="0" y2="1">
-        <stop offset="0" stopColor="#33b8b3"/>
-        <stop offset="1" stopColor="#00a19b"/>
-      </linearGradient>
-    </defs>
-    {/* Hexagon */}
-    <path d="M32 4 L56 18 L56 46 L32 60 L8 46 L8 18 Z" fill="none" stroke="url(#lg)" strokeWidth="2.5"/>
-    {/* Wing / K mark */}
-    <path d="M18 22 L32 44 L46 22 L40 22 L32 36 L24 22 Z" fill="url(#lg)"/>
-    <path d="M22 18 L32 34 L42 18 L38 18 L32 28 L26 18 Z" fill="url(#lg)" opacity=".45"/>
-  </svg>
-);
+// ============== LOGO (from uploaded SVG — adapted for teal theme) ==============
+const Logo = ({ size = 32, variant = 'default' }) => {
+  // variant: 'default' (teal on transparent), 'light' (white), 'dark' (original red on dark)
+  const s = size;
+  const scale = s / 64;
+  const primary = variant === 'light' ? '#fff' : variant === 'dark' ? '#cc1a1a' : 'var(--teal)';
+  const inner = variant === 'light' ? 'rgba(255,255,255,.15)' : variant === 'dark' ? '#111' : 'var(--ink)';
+  const accent = variant === 'light' ? 'rgba(255,255,255,.8)' : variant === 'dark' ? '#cc1a1a' : 'var(--teal-hi)';
+
+  return (
+    <svg viewBox="0 0 64 64" width={s} height={s} className="logo-mark" aria-label="Irha Kars">
+      {/* Outer hexagon */}
+      <polygon
+        points="32,4 56,18 56,46 32,60 8,46 8,18"
+        fill={primary}
+        opacity=".9"
+      />
+      {/* Inner hexagon */}
+      <polygon
+        points="32,10 50,21 50,43 32,54 14,43 14,21"
+        fill={inner}
+      />
+      {/* Middle hexagon ring */}
+      <polygon
+        points="32,15 44,23 44,39 32,47 20,39 20,23"
+        fill={primary}
+        opacity=".85"
+      />
+      {/* Inner-most hexagon */}
+      <polygon
+        points="32,20 39,25 39,37 32,42 25,37 25,25"
+        fill={inner}
+      />
+      {/* Diagonal lines */}
+      <line x1="8" y1="18" x2="14" y2="21" stroke={accent} strokeWidth="1.5"/>
+      <line x1="56" y1="18" x2="50" y2="21" stroke={accent} strokeWidth="1.5"/>
+      {/* Central diamond */}
+      <path d="M 25,29 L 32,22 L 39,29 L 32,36 Z" fill={primary}/>
+    </svg>
+  );
+};
+
+// ============== FULL LOGO WITH TEXT ==============
+const LogoFull = ({ height = 48, variant = 'default' }) => {
+  const textColor = variant === 'light' ? '#fff' : 'var(--ink)';
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:10}}>
+      <Logo size={height} variant={variant}/>
+      <div style={{display:'flex',flexDirection:'column',gap:0}}>
+        <span style={{
+          fontFamily:"'Helvetica Neue', Helvetica, Arial, sans-serif",
+          fontSize: height * 0.42,
+          fontWeight:900,
+          color: textColor,
+          letterSpacing:'.06em',
+          lineHeight:1.1,
+        }}>IRHA KARS</span>
+      </div>
+    </div>
+  );
+};
+
+// ============== IRHA KARS BADGE LOGO (as used on the uploaded card) ==============
+const LogoBadge = ({ size = 120, variant = 'default' }) => {
+  const primary = variant === 'light' ? '#fff' : variant === 'original' ? '#cc1a1a' : 'var(--teal)';
+  const bg = variant === 'light' ? 'rgba(255,255,255,.1)' : variant === 'original' ? '#111' : 'var(--ink)';
+  const textCol = variant === 'light' ? '#fff' : '#fff';
+
+  return (
+    <div className="logo-badge" style={{
+      width: size, height: size * 0.85,
+      background: bg,
+      borderRadius: 12,
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center',
+      gap: size * 0.04,
+      padding: size * 0.1,
+      border: `1.5px solid ${variant === 'light' ? 'rgba(255,255,255,.2)' : 'rgba(0,161,155,.3)'}`,
+    }}>
+      <Logo size={size * 0.4} variant={variant === 'original' ? 'dark' : variant}/>
+      <span style={{
+        fontFamily:"'Arial Black', 'Helvetica Neue', sans-serif",
+        fontSize: size * 0.13,
+        fontWeight:900,
+        color: textCol,
+        letterSpacing: size * 0.003 + 'em',
+        textAlign:'center',
+        lineHeight:1.2,
+      }}>IRHA KARS</span>
+      <div style={{width:'60%',height:1.5,background: primary, borderRadius:1}}></div>
+    </div>
+  );
+};
 
 // ============== MOUNTAIN SVG layers (parallax, light/teal palette) ==============
 const MountainLayer = ({ which }) => {
@@ -43,4 +120,6 @@ const MountainLayer = ({ which }) => {
 };
 
 window.Logo = Logo;
+window.LogoFull = LogoFull;
+window.LogoBadge = LogoBadge;
 window.MountainLayer = MountainLayer;

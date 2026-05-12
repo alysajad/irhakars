@@ -235,59 +235,131 @@ function Fleet(){
   );
 }
 
-// ============== ROUTES ==============
-function RouteMap({ kind }){
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const path = el.querySelector('path.route');
-    if (!path) return;
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = `${len}`;
-    path.style.strokeDashoffset = `${len}`;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          path.style.transition = 'stroke-dashoffset 2.2s ease-out';
-          path.style.strokeDashoffset = '0';
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-  const paths = {
-    kashmir: 'M 30 160 Q 80 100 130 130 T 220 90 T 310 130',
-    jammu:   'M 30 180 Q 80 90 140 110 T 230 150 T 310 90',
-    delhi:   'M 30 200 Q 80 180 110 150 T 180 80 T 250 100 T 310 40',
-  };
-  const endY = { kashmir: 130, jammu: 90, delhi: 40 };
-  const startY = { kashmir: 160, jammu: 180, delhi: 200 };
+// ============== ROUTES (Google Maps Satellite) ==============
+function RouteMapPreview({ route }) {
+  // Build a Google Maps embed URL with satellite view and directions
+  const waypointStr = route.waypoints
+    .slice(1, -1)
+    .map(w => `${w.lat},${w.lng}`)
+    .join('|');
+  
+  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=satellite${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
+
   return (
-    <svg ref={ref} viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style={{width:'100%'}}>
-      <defs>
-        <linearGradient id={`rg-${kind}`} x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stopColor="#33b8b3"/>
-          <stop offset="1" stopColor="#00a19b"/>
-        </linearGradient>
-      </defs>
-      {/* subtle mountain silhouettes */}
-      <path d="M0 200 L40 160 L80 180 L120 140 L160 170 L200 130 L240 160 L280 120 L320 155 L340 135 L340 220 L0 220 Z" fill="rgba(0,161,155,.08)"/>
-      <path d="M0 220 L0 210 L60 200 L120 210 L200 195 L280 208 L340 198 L340 220 Z" fill="rgba(0,161,155,.05)"/>
-      {/* route path */}
-      <path className="route" d={paths[kind]} fill="none" stroke={`url(#rg-${kind})`} strokeWidth="3" strokeLinecap="round"/>
-      {/* endpoint markers */}
-      <circle cx="30" cy={startY[kind]} r="6" fill="var(--ink)"/>
-      <circle cx="30" cy={startY[kind]} r="12" fill="var(--ink)" opacity=".12"/>
-      <circle cx="310" cy={endY[kind]} r="6" fill="var(--teal)"/>
-      <circle cx="310" cy={endY[kind]} r="12" fill="var(--teal)" opacity=".2"/>
-    </svg>
+    <div className="route-map-preview">
+      <iframe
+        src={embedUrl}
+        className="route-map-iframe"
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title={`Route ${route.num}: ${route.from} to ${route.to}`}
+      ></iframe>
+      <div className="route-map-overlay">
+        <span className="route-map-overlay-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3l6 6-6 6M9 21l-6-6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        </span>
+        <span>View Full Map</span>
+      </div>
+    </div>
+  );
+}
+
+function RouteMapModal({ route, onClose }) {
+  const waypointStr = route.waypoints
+    .slice(1, -1)
+    .map(w => `${w.lat},${w.lng}`)
+    .join('|');
+  
+  const embedUrl = `https://www.google.com/maps/embed/v1/directions?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&origin=${route.origin}&destination=${route.destination}&mode=driving&maptype=satellite${waypointStr ? `&waypoints=${waypointStr}` : ''}&zoom=${route.mapZoom}`;
+
+  // Close on Escape
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handleKey);
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', handleKey); document.body.style.overflow = ''; };
+  }, [onClose]);
+
+  return (
+    <div className="route-modal-overlay" onClick={onClose}>
+      <div className="route-modal" onClick={e => e.stopPropagation()}>
+        {/* Close button */}
+        <button className="route-modal-close" onClick={onClose} aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+        </button>
+
+        {/* Header */}
+        <div className="route-modal-header">
+          <div className="eyebrow"><span className="dot"></span>ROUTE {route.num} · {route.tag}</div>
+          <h3 className="route-modal-title">{route.from} → {route.to.split('·')[0].trim()}</h3>
+          <div className="route-modal-meta">
+            <span>{route.dist}</span>
+            <span className="route-modal-sep">·</span>
+            <span>{route.dur}</span>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div className="route-modal-map">
+          <iframe
+            src={embedUrl}
+            className="route-modal-iframe"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title={`Full route: ${route.from} to ${route.to}`}
+          ></iframe>
+        </div>
+
+        {/* Waypoints */}
+        <div className="route-modal-waypoints">
+          <div className="route-modal-wp-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="var(--teal)" strokeWidth="2"/><circle cx="12" cy="10" r="3" stroke="var(--teal)" strokeWidth="2"/></svg>
+            <span>Places along the way</span>
+          </div>
+          <div className="route-modal-wp-list">
+            {route.waypoints.map((wp, i) => (
+              <div className="route-modal-wp" key={i}>
+                <div className="route-modal-wp-dot">
+                  {i === 0 ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8"/></svg>
+                  ) : i === route.waypoints.length - 1 ? (
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" fill="var(--teal)"/><circle cx="12" cy="10" r="3" fill="#fff"/></svg>
+                  ) : (
+                    <div className="route-modal-wp-num">{i}</div>
+                  )}
+                </div>
+                {i < route.waypoints.length - 1 && <div className="route-modal-wp-line"></div>}
+                <div className="route-modal-wp-info">
+                  <b>{wp.name}</b>
+                  <span>{wp.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Open in Google Maps CTA */}
+        <a
+          href={`https://www.google.com/maps/dir/${route.waypoints.map(w => `${w.lat},${w.lng}`).join('/')}`}
+          target="_blank"
+          rel="noreferrer"
+          className="cta-btn"
+          style={{alignSelf:'center',marginTop:16}}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
+    </div>
   );
 }
 
 function Routes(){
   useReveal();
+  const [selectedRoute, setSelectedRoute] = useState(null);
+
   return (
     <section className="section" id="routes">
       <div className="wrap">
@@ -300,7 +372,7 @@ function Routes(){
         </div>
         <div className="routes">
           {IRHA.ROUTES.map(r => (
-            <div className="route-card reveal" key={r.num}>
+            <div className="route-card reveal" key={r.num} onClick={() => setSelectedRoute(r)} style={{cursor:'pointer'}}>
               <div className="ribbon">{r.tag}</div>
               <div>
                 <div className="num">ROUTE {r.num}</div>
@@ -310,7 +382,17 @@ function Routes(){
                   <span className="to">{r.to}</span>
                 </div>
               </div>
-              <div className="map"><RouteMap kind={r.kind}/></div>
+              <div className="map"><RouteMapPreview route={r}/></div>
+              {/* Waypoint pills */}
+              <div className="route-wp-pills">
+                {r.waypoints.slice(0, 4).map((wp, i) => (
+                  <span className="route-wp-pill" key={i}>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="var(--teal)"><circle cx="12" cy="12" r="8"/></svg>
+                    {wp.name}
+                  </span>
+                ))}
+                {r.waypoints.length > 4 && <span className="route-wp-pill more">+{r.waypoints.length - 4} more</span>}
+              </div>
               <div className="rinfo">
                 <div>
                   <span style={{fontSize:11,letterSpacing:'.12em',textTransform:'uppercase',color:'var(--muted)',fontWeight:600}}>Distance</span>
@@ -325,6 +407,9 @@ function Routes(){
           ))}
         </div>
       </div>
+
+      {/* Map Popup Modal */}
+      {selectedRoute && <RouteMapModal route={selectedRoute} onClose={() => setSelectedRoute(null)} />}
     </section>
   );
 }
@@ -371,7 +456,53 @@ function Packages(){
   );
 }
 
-// ============== DRIVERS ==============
+// ============== DRIVERS (standalone section, removed from homepage) ==============
+function DriverCard({ d, index }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <div
+      className="person reveal"
+      style={{ transitionDelay: `${(index % 4) * 0.08}s` }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Driver photo */}
+      <div className="driver-photo-wrap">
+        {d.photo ? (
+          <img
+            src={d.photo}
+            alt={d.name}
+            className="driver-photo-img"
+            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+          />
+        ) : null}
+        <div className="driver-photo-placeholder" style={d.photo ? {display:'none'} : {}}>
+          <svg viewBox="0 0 80 80" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="30" r="14" fill="rgba(0,161,155,.25)"/>
+            <ellipse cx="40" cy="68" rx="22" ry="16" fill="rgba(0,161,155,.2)"/>
+          </svg>
+          <span className="driver-photo-ini">{d.ini}</span>
+        </div>
+        {/* Hover overlay with DL & contact */}
+        <div className={`driver-hover-info ${hovered ? 'visible' : ''}`}>
+          <div className="dhi-row">
+            <span className="dhi-label">DL No.</span>
+            <span className="dhi-value">{d.dl || '—'}</span>
+          </div>
+          <div className="dhi-row">
+            <span className="dhi-label">Contact</span>
+            <span className="dhi-value">{d.phone || '—'}</span>
+          </div>
+        </div>
+      </div>
+      <div className="name">{d.name}</div>
+      <div className="role">{d.role}</div>
+      <div className="skills">{d.skills.map(s => <span key={s}>{s}</span>)}</div>
+      <div className="years"><span>Years driving</span><b>{d.years}</b></div>
+    </div>
+  );
+}
+
 function Drivers(){
   useReveal();
   return (
@@ -418,16 +549,160 @@ function Drivers(){
         </div>
 
         <div className="roster">
-          {IRHA.DRIVERS.map(d => (
-            <div className="person reveal" key={d.name}>
-              <div className="ava">{d.ini}</div>
-              <div className="name">{d.name}</div>
-              <div className="role">{d.role}</div>
-              <div className="skills">{d.skills.map(s => <span key={s}>{s}</span>)}</div>
-              <div className="years"><span>Years driving</span><b>{d.years}</b></div>
-            </div>
+          {IRHA.DRIVERS.map((d, i) => (
+            <DriverCard key={d.name} d={d} index={i} />
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ============== TEAM SHOWCASE (interactive photo grid + name list) ==============
+function TeamPhotoCard({ member, className, hoveredId, onHover }) {
+  const isActive = hoveredId === member.id;
+  const isDimmed = hoveredId !== null && !isActive;
+
+  return (
+    <div
+      className={`team-photo-card ${className} ${isDimmed ? 'dimmed' : ''}`}
+      onMouseEnter={() => onHover(member.id)}
+      onMouseLeave={() => onHover(null)}
+    >
+      {member.photo ? (
+        <img
+          src={member.photo}
+          alt={member.name}
+          className="team-photo-card-img"
+          style={{
+            filter: isActive ? 'grayscale(0) brightness(1)' : 'grayscale(1) brightness(0.77)',
+          }}
+          onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
+        />
+      ) : null}
+      <div className="team-photo-card-fallback" style={member.photo ? {display:'none'} : {}}>
+        <span className="team-photo-card-ini">{member.ini}</span>
+      </div>
+    </div>
+  );
+}
+
+function TeamMemberRow({ member, hoveredId, onHover }) {
+  const isActive = hoveredId === member.id;
+  const isDimmed = hoveredId !== null && !isActive;
+
+  return (
+    <div
+      className={`team-member-row ${isDimmed ? 'dimmed' : ''}`}
+      onMouseEnter={() => onHover(member.id)}
+      onMouseLeave={() => onHover(null)}
+    >
+      <div className="team-member-row-top">
+        <span className={`team-member-dot ${isActive ? 'active' : ''}`}></span>
+        <span className={`team-member-name ${isActive ? 'active' : ''}`}>{member.name}</span>
+      </div>
+      <p className="team-member-role">{member.role}</p>
+      {member.desc && (
+        <p className={`team-member-desc ${isActive ? 'show' : ''}`}>{member.desc}</p>
+      )}
+    </div>
+  );
+}
+
+function Team(){
+  useReveal();
+  const [hoveredId, setHoveredId] = useState(null);
+  const [showDrivers, setShowDrivers] = useState(false);
+
+  const members = IRHA.TEAM;
+  const col1 = members.filter((_, i) => i % 3 === 0);
+  const col2 = members.filter((_, i) => i % 3 === 1);
+  const col3 = members.filter((_, i) => i % 3 === 2);
+
+  return (
+    <section className="section" id="team" style={{background:'var(--sand-3)'}}>
+      <div className="wrap">
+        <div className="s-head reveal">
+          <div>
+            <div className="eyebrow"><span className="dot"></span>The Leadership</div>
+            <h2 className="display s-title" style={{marginTop:16}}>Meet the team<br/><span className="accent">behind the wheel.</span></h2>
+          </div>
+          <p className="s-desc">From the founder's vision to everyday operations — the people who make every trip seamless.</p>
+        </div>
+
+        {/* Team Showcase: Photo Grid + Name List */}
+        <div className="team-showcase reveal">
+          {/* Left: photo grid */}
+          <div className="team-photo-grid">
+            {/* Column 1 */}
+            <div className="team-photo-col">
+              {col1.map((member) => (
+                <TeamPhotoCard
+                  key={member.id}
+                  member={member}
+                  className="team-photo-sm"
+                  hoveredId={hoveredId}
+                  onHover={setHoveredId}
+                />
+              ))}
+            </div>
+
+            {/* Column 2 — offset */}
+            <div className="team-photo-col team-photo-col-offset">
+              {col2.map((member) => (
+                <TeamPhotoCard
+                  key={member.id}
+                  member={member}
+                  className="team-photo-md"
+                  hoveredId={hoveredId}
+                  onHover={setHoveredId}
+                />
+              ))}
+            </div>
+
+            {/* Column 3 — slight offset */}
+            <div className="team-photo-col team-photo-col-offset-sm">
+              {col3.map((member) => (
+                <TeamPhotoCard
+                  key={member.id}
+                  member={member}
+                  className="team-photo-sm"
+                  hoveredId={hoveredId}
+                  onHover={setHoveredId}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Right: member name list */}
+          <div className="team-name-list">
+            {members.map((member) => (
+              <TeamMemberRow
+                key={member.id}
+                member={member}
+                hoveredId={hoveredId}
+                onHover={setHoveredId}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Meet the Drivers CTA */}
+        <div className="team-drivers-cta reveal" style={{marginTop:56, textAlign:'center'}}>
+          <button
+            className="cta-btn"
+            onClick={() => setShowDrivers(!showDrivers)}
+            style={{margin:'0 auto'}}
+          >
+            {showDrivers ? 'Hide Drivers' : 'Meet Our Drivers'}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{transform: showDrivers ? 'rotate(90deg)' : 'none', transition:'transform .3s'}}>
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        {/* Expandable Drivers section */}
+        {showDrivers && <Drivers />}
       </div>
     </section>
   );
@@ -603,7 +878,7 @@ function Footer(){
           <div className="footer-brand">
             <div style={{display:'flex',alignItems:'center',gap:10}}>
               <Logo size={34}/>
-              <div style={{fontFamily:"'Recoleta',serif",fontSize:20,fontWeight:700,color:'#fff',letterSpacing:'.04em'}}>IRHA KARS</div>
+              <div style={{fontFamily:"'Helvetica Neue', Helvetica, Arial, sans-serif",fontSize:20,fontWeight:800,color:'#fff',letterSpacing:'.06em'}}>IRHA KARS</div>
             </div>
             <p>All-India tourist transport. Sedans, SUVs, tempos, buses and Volvo sleepers — every vehicle with a driver who knows the road.</p>
             <p style={{color:'rgba(255,255,255,.35)',fontSize:13}}>Babdam, Srinagar, Kashmir 190001 · www.irhakars.in</p>
@@ -733,6 +1008,7 @@ window.Fleet = Fleet;
 window.Routes = Routes;
 window.Packages = Packages;
 window.Drivers = Drivers;
+window.Team = Team;
 window.B2B = B2B;
 window.Testimonials = Testimonials;
 window.FAQ = FAQ;

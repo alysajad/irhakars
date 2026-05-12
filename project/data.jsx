@@ -1,44 +1,70 @@
 /* global React */
 // ============== DATA ==============
 
-// Vehicle images — accurate per model from Wikimedia Commons (public domain / CC licensed)
+// Vehicle images — local generated images
 const CARS = [
   { name:'Swift',           cat:'Hatchback', type:'hatch',   seats:4,  bags:2,  ac:true, trans:'Manual',    price:1800,  tag:'Compact',
-    img:'https://upload.wikimedia.org/wikipedia/commons/d/d2/Maruti_Suzuki_Swift_2092.JPG' },
+    img:'cars/swift.png' },
   { name:'Amaze',           cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2200,  tag:'Sedan',
-    img:'https://upload.wikimedia.org/wikipedia/commons/f/f4/Honda_Amaze_%28front%29.png' },
-  { name:'Galanza',         cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2400,  tag:'Sedan',
-    img:'https://upload.wikimedia.org/wikipedia/commons/5/5b/2022_Maruti_Suzuki_Baleno_Alpha_%28India%29_front_view.jpg' },
+    img:'cars/amaze.png' },
+  { name:'Glanza',          cat:'Sedan',     type:'sedan',   seats:4,  bags:3,  ac:true, trans:'Manual',    price:2400,  tag:'Sedan',
+    img:'cars/glanza.png' },
   { name:'Ertiga',          cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Manual',    price:2800,  tag:'Family',
-    img:'https://upload.wikimedia.org/wikipedia/commons/f/f6/Suzuki_Ertiga.jpg' },
-  { name:'Urbinia',         cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Auto',      price:3200,  tag:'Family',
-    img:'https://upload.wikimedia.org/wikipedia/commons/f/f6/Suzuki_Ertiga.jpg' },
+    img:'cars/ertiga.png' },
+  { name:'Urbania',         cat:'MUV',       type:'suv',     seats:6,  bags:4,  ac:true, trans:'Auto',      price:3200,  tag:'Family',
+    img:'cars/urbania.png' },
   { name:'Innova',          cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Manual',    price:3600,  tag:'Popular',
-    img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/2009-2010_Toyota_Innova_Ph.JPG' },
+    img:'cars/innova.png' },
   { name:'Innova Crysta',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto',      price:4200,  tag:'Premium',
-    img:'https://upload.wikimedia.org/wikipedia/commons/8/87/Toyota_Innova_Crysta_2.4_Z_front_right.jpg' },
+    img:'cars/innova_crysta.png' },
   { name:'Fortuner 4×4',   cat:'SUV',       type:'suv',     seats:7,  bags:5,  ac:true, trans:'Auto 4×4',  price:6500,  tag:'Luxury',
-    img:'https://upload.wikimedia.org/wikipedia/commons/d/d3/Toyota_Fortuner_4x4_V.jpg' },
+    img:'cars/fortuner.png' },
   { name:'12 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:12, bags:10, ac:true, trans:'Manual',    price:4500,  tag:'Group',
-    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+    img:'cars/tempo.png' },
   { name:'17 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:17, bags:14, ac:true, trans:'Manual',    price:5800,  tag:'Group',
-    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+    img:'cars/tempo.png' },
   { name:'20 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:20, bags:18, ac:true, trans:'Manual',    price:6800,  tag:'Group',
-    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+    img:'cars/tempo.png' },
   { name:'26 Seater Tempo', cat:'Tempo',     type:'tempo',   seats:26, bags:22, ac:true, trans:'Manual',    price:8500,  tag:'Large',
-    img:'https://upload.wikimedia.org/wikipedia/commons/4/43/Force_Traveller_Luxury.jpg' },
+    img:'cars/tempo.png' },
   { name:'27 Seater Bus',   cat:'Bus',       type:'bus',     seats:27, bags:25, ac:true, trans:'Manual',    price:9200,  tag:'Coach',
-    img:'https://upload.wikimedia.org/wikipedia/commons/7/79/Ashok_Leyland_Viking_bus.jpg' },
+    img:'cars/bus.png' },
   { name:'37 Seater Bus',   cat:'Bus',       type:'bus',     seats:37, bags:34, ac:true, trans:'Manual',    price:11500, tag:'Coach',
-    img:'https://upload.wikimedia.org/wikipedia/commons/7/79/Ashok_Leyland_Viking_bus.jpg' },
+    img:'cars/bus.png' },
   { name:'Volvo Sleeper 9600', cat:'Sleeper', type:'sleeper',seats:36, bags:36, ac:true, trans:'Manual',    price:18500, tag:'Overnight',
-    img:'https://upload.wikimedia.org/wikipedia/commons/5/51/Volvo_9600_bus.jpg' },
+    img:'cars/volvo.png' },
 ];
 
 const ROUTES = [
-  { num:'01', from:'Srinagar', to:'Pahalgam · Gulmarg · Sonmarg', dist:'90–200 km', dur:'Day trip → 3 days', tag:'Within Kashmir', kind:'kashmir' },
-  { num:'02', from:'Jammu',    to:'Patnitop · Vaishno Devi · Katra', dist:'60–250 km', dur:'1–2 days', tag:'Jammu region', kind:'jammu' },
-  { num:'03', from:'Delhi',    to:'Srinagar via Kashmir Valley', dist:'~850 km', dur:'2 days · 1 night', tag:'Long haul', kind:'delhi' },
+  { num:'01', from:'Srinagar', to:'Pahalgam · Gulmarg · Sonmarg', dist:'90–200 km', dur:'Day trip → 3 days', tag:'Within Kashmir', kind:'kashmir',
+    mapCenter:'34.0837,74.7973', mapZoom:9,
+    origin:'Srinagar,Kashmir', destination:'Sonmarg,Kashmir',
+    waypoints:[
+      { name:'Srinagar', lat:34.0837, lng:74.7973, desc:'Starting point · Dal Lake, Mughal Gardens' },
+      { name:'Gulmarg', lat:34.0484, lng:74.3805, desc:'Gondola ride · Ski resort · 2,650m altitude' },
+      { name:'Pahalgam', lat:34.0161, lng:75.3150, desc:'Betaab Valley · Aru Valley · Lidder River' },
+      { name:'Sonmarg', lat:34.3034, lng:75.2988, desc:'Thajiwas Glacier · Gateway to Ladakh' },
+    ]},
+  { num:'02', from:'Jammu',    to:'Patnitop · Vaishno Devi · Katra', dist:'60–250 km', dur:'1–2 days', tag:'Jammu region', kind:'jammu',
+    mapCenter:'33.05,75.38', mapZoom:9,
+    origin:'Jammu,India', destination:'Katra,Jammu',
+    waypoints:[
+      { name:'Jammu', lat:32.7266, lng:74.8570, desc:'Starting point · Raghunath Temple' },
+      { name:'Katra', lat:32.9915, lng:74.9318, desc:'Base camp for Vaishno Devi shrine' },
+      { name:'Patnitop', lat:33.0878, lng:75.3238, desc:'Hill station · Pine forests · 2,024m' },
+      { name:'Vaishno Devi', lat:33.0303, lng:74.9490, desc:'Holy shrine · 5,200ft altitude trek' },
+    ]},
+  { num:'03', from:'Delhi',    to:'Srinagar via Kashmir Valley', dist:'~850 km', dur:'2 days · 1 night', tag:'Long haul', kind:'delhi',
+    mapCenter:'31.5,76.5', mapZoom:6,
+    origin:'New+Delhi,India', destination:'Srinagar,Kashmir',
+    waypoints:[
+      { name:'New Delhi', lat:28.6139, lng:77.2090, desc:'Starting point · Capital city' },
+      { name:'Chandigarh', lat:30.7333, lng:76.7794, desc:'Pit stop · Rock Garden, Sukhna Lake' },
+      { name:'Jalandhar', lat:31.3260, lng:75.5762, desc:'Highway rest · Punjabi cuisine stop' },
+      { name:'Udhampur', lat:32.9160, lng:75.1322, desc:'Jammu region entry · Mountain views' },
+      { name:'Banihal', lat:33.4314, lng:75.0878, desc:'Banihal tunnel · Gateway to Kashmir' },
+      { name:'Srinagar', lat:34.0837, lng:74.7973, desc:'Destination · Kashmir Valley' },
+    ]},
 ];
 
 const PACKAGES = [
@@ -60,14 +86,14 @@ const PACKAGES = [
 ];
 
 const DRIVERS = [
-  { name:'Showkat Ahmad', role:'Senior · Kashmir Valley',    years:18, skills:['Urdu','Hindi','English','Kashmiri'], ini:'SA' },
-  { name:'Imtiyaz Bhat',  role:'Highway · Delhi route',      years:12, skills:['Hindi','English','Punjabi'],        ini:'IB' },
-  { name:'Bilal Mir',     role:'Mountain · Sonmarg/Zojila',  years:15, skills:['Urdu','Hindi','Kashmiri'],          ini:'BM' },
-  { name:'Tariq Wani',    role:'Tempo · 17/20 seater',       years:10, skills:['Hindi','Urdu','English'],           ini:'TW' },
-  { name:'Javed Lone',    role:'Coach · Jammu corridor',     years:14, skills:['Hindi','Dogri','Urdu'],             ini:'JL' },
-  { name:'Aamir Ganie',   role:'Sedan · City',               years:8,  skills:['Urdu','English'],                  ini:'AG' },
-  { name:'Rouf Dar',      role:'Volvo Sleeper · Long haul',  years:16, skills:['Hindi','Punjabi','Urdu'],           ini:'RD' },
-  { name:'Sajad Para',    role:'Fortuner 4×4 · Off-road',    years:11, skills:['Urdu','English','Hindi'],           ini:'SP' },
+  { name:'Showkat Ahmad', role:'Senior · Kashmir Valley',    years:18, skills:['Urdu','Hindi','English','Kashmiri'], ini:'SA', dl:'JK01-XXXX-2007', phone:'+91 70067 XXXXX', photo:'drivers/showkat.png' },
+  { name:'Imtiyaz Bhat',  role:'Highway · Delhi route',      years:12, skills:['Hindi','English','Punjabi'],        ini:'IB', dl:'JK02-XXXX-2013', phone:'+91 60058 XXXXX', photo:'drivers/imtiyaz.png' },
+  { name:'Bilal Mir',     role:'Mountain · Sonmarg/Zojila',  years:15, skills:['Urdu','Hindi','Kashmiri'],          ini:'BM', dl:'JK01-XXXX-2010', phone:'+91 70067 XXXXX', photo:'drivers/bilal.png' },
+  { name:'Tariq Wani',    role:'Tempo · 17/20 seater',       years:10, skills:['Hindi','Urdu','English'],           ini:'TW', dl:'JK03-XXXX-2015', phone:'+91 60058 XXXXX', photo:'drivers/tariq.png' },
+  { name:'Javed Lone',    role:'Coach · Jammu corridor',     years:14, skills:['Hindi','Dogri','Urdu'],             ini:'JL', dl:'JK02-XXXX-2011', phone:'+91 70067 XXXXX', photo:'drivers/javed.png' },
+  { name:'Aamir Ganie',   role:'Sedan · City',               years:8,  skills:['Urdu','English'],                  ini:'AG', dl:'JK01-XXXX-2017', phone:'+91 60058 XXXXX', photo:'drivers/aamir.png' },
+  { name:'Rouf Dar',      role:'Volvo Sleeper · Long haul',  years:16, skills:['Hindi','Punjabi','Urdu'],           ini:'RD', dl:'JK02-XXXX-2009', phone:'+91 70067 XXXXX', photo:'drivers/rouf.png' },
+  { name:'Sajad Para',    role:'Fortuner 4×4 · Off-road',    years:11, skills:['Urdu','English','Hindi'],           ini:'SP', dl:'JK01-XXXX-2014', phone:'+91 60058 XXXXX', photo:'drivers/sajad.png' },
 ];
 
 const TESTIMONIALS = [
@@ -85,4 +111,13 @@ const FAQS = [
   { q:'What if my plans change mid-trip?', a:'Itineraries with us are flexible. Your driver is in constant touch with our control room — extend the trip, swap a stop, add a vehicle. We rework things on the road as long as the fleet is available.' },
 ];
 
-window.IRHA = { CARS, ROUTES, PACKAGES, DRIVERS, TESTIMONIALS, FAQS };
+const TEAM = [
+  { id:'1', name:'Irfan Ahmad',   role:'CEO & Founder',     ini:'IA', desc:'Founded Irha Kars in 2009. 17+ years of Kashmir tourism expertise driving every strategic decision.', photo:'drivers/showkat.png' },
+  { id:'2', name:'Rashid Khan',   role:'Operations Manager', ini:'RK', desc:'Manages day-to-day fleet operations, driver scheduling, and ensures every trip runs like clockwork.', photo:'drivers/imtiyaz.png' },
+  { id:'3', name:'Faisal Mir',    role:'Sales Lead',         ini:'FM', desc:'Handles all B2B partnerships and travel agency relationships. Your first point of contact for group bookings.', photo:'drivers/bilal.png' },
+  { id:'4', name:'Sameer Wani',   role:'Fleet Manager',      ini:'SW', desc:'Keeps every vehicle road-ready — from Swift to Volvo sleeper. Zero tolerance for mechanical surprises.', photo:'drivers/tariq.png' },
+  { id:'5', name:'Nasir Shah',    role:'Finance & Accounts', ini:'NS', desc:'GST invoicing, monthly billing for B2B clients, and transparent pricing that builds trust.', photo:'drivers/javed.png' },
+  { id:'6', name:'Zahoor Bhat',   role:'Customer Relations', ini:'ZB', desc:'24/7 support, trip co-ordination, and making sure every traveller feels looked after on Kashmir roads.', photo:'drivers/aamir.png' },
+];
+
+window.IRHA = { CARS, ROUTES, PACKAGES, DRIVERS, TESTIMONIALS, FAQS, TEAM };
