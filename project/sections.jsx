@@ -751,19 +751,19 @@ function B2B() {
               </defs>
               <g transform="translate(20,215)">
                 <rect x="0" y="0" width="380" height="56" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
-                <text x="20" y="36" fontFamily="DM Sans, sans-serif" fontSize="18" fill="#fff" fontWeight="600">27-SEATER · 37-SEATER · VOLVO</text>
+                <text x="20" y="36" fontFamily="Open Sans, sans-serif" fontSize="18" fill="#fff" fontWeight="600">27-SEATER · 37-SEATER · VOLVO</text>
               </g>
               <g transform="translate(50,148)">
                 <rect x="0" y="0" width="320" height="52" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
-                <text x="18" y="33" fontFamily="DM Sans, sans-serif" fontSize="17" fill="#fff" fontWeight="600">TEMPO 12 · 17 · 20 · 26</text>
+                <text x="18" y="33" fontFamily="Open Sans, sans-serif" fontSize="17" fill="#fff" fontWeight="600">TEMPO 13 · 17 · 20 · URBANIA</text>
               </g>
               <g transform="translate(80,90)">
                 <rect x="0" y="0" width="260" height="48" rx="12" fill="url(#b2bg)" stroke="rgba(255,255,255,.15)" strokeWidth="1" />
-                <text x="18" y="30" fontFamily="DM Sans, sans-serif" fontSize="16" fill="#fff" fontWeight="600">INNOVA · CRYSTA · ERTIGA</text>
+                <text x="18" y="30" fontFamily="Open Sans, sans-serif" fontSize="16" fill="#fff" fontWeight="600">INNOVA · CRYSTA · SCORPIO</text>
               </g>
               <g transform="translate(110,40)">
                 <rect x="0" y="0" width="200" height="40" rx="10" fill="rgba(255,255,255,.25)" stroke="rgba(255,255,255,.3)" strokeWidth="1" />
-                <text x="18" y="26" fontFamily="DM Sans, sans-serif" fontSize="14" fill="#fff" fontWeight="700">SWIFT · AMAZE · SEDAN</text>
+                <text x="18" y="26" fontFamily="Open Sans, sans-serif" fontSize="14" fill="#fff" fontWeight="700">SWIFT · AMAZE · SEDAN</text>
               </g>
             </svg>
           </div>
@@ -883,7 +883,7 @@ function Footer() {
           <div className="footer-brand">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <Logo size={34} />
-              <div style={{ fontFamily: "'Proxima Nova Condensed', 'Proxima Nova', 'Arial Narrow', sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '.06em' }}>IRHA KARS</div>
+              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '.06em' }}>IRHA KARS</div>
             </div>
             <p>All-India tourist transport. Sedans, SUVs, tempos, buses and Volvo sleepers — every vehicle with a driver who knows the road.</p>
             <p style={{ color: 'rgba(255,255,255,.35)', fontSize: 13 }}>Babdam, Srinagar, Kashmir 190001 · www.irhakars.in</p>
@@ -893,7 +893,7 @@ function Footer() {
             <ul>
               <li><a href="#fleet">Sedans &amp; Hatchbacks</a></li>
               <li><a href="#fleet">SUVs &amp; MUVs</a></li>
-              <li><a href="#fleet">Tempos (12–26 seater)</a></li>
+              <li><a href="#fleet">Tempos (13–20 seater)</a></li>
               <li><a href="#fleet">Buses (27 &amp; 37 seater)</a></li>
               <li><a href="#fleet">Volvo Sleeper</a></li>
             </ul>

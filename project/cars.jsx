@@ -51,7 +51,7 @@ const LogoFull = ({ height = 48, variant = 'default' }) => {
       <Logo size={height} variant={variant} />
       <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
         <span style={{
-          fontFamily: "'Proxima Nova Condensed', 'Proxima Nova', 'Arial Narrow', sans-serif",
+          fontFamily: "'Open Sans', sans-serif",
           fontSize: height * 0.42,
           fontWeight: 900,
           color: textColor,
@@ -82,7 +82,7 @@ const LogoBadge = ({ size = 120, variant = 'default' }) => {
     }}>
       <Logo size={size * 0.4} variant={variant === 'original' ? 'dark' : variant} />
       <span style={{
-        fontFamily: "'Arial Black', 'Helvetica Neue', sans-serif",
+        fontFamily: "'Open Sans', sans-serif",
         fontSize: size * 0.13,
         fontWeight: 900,
         color: textCol,
