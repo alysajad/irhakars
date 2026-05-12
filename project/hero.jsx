@@ -185,20 +185,6 @@ function Hero(){
               <a href="#fleet" className="cta-btn ghost">Browse Fleet</a>
             </div>
 
-            <div className="hero-stats">
-              <div className="stat">
-                <div className="n">15<sup>+</sup></div>
-                <div className="l">Vehicle types</div>
-              </div>
-              <div className="stat">
-                <div className="n">40<sup>+</sup></div>
-                <div className="l">Drivers on roll</div>
-              </div>
-              <div className="stat">
-                <div className="n">17<sup>yrs</sup></div>
-                <div className="l">Kashmir routes</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
