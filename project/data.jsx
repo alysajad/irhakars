@@ -97,9 +97,27 @@ const DRIVERS = [
 ];
 
 const TESTIMONIALS = [
-  { quote:'Booked an Innova Crysta with Showkat for our 6-day Kashmir trip. The driver knew every shortcut, every viewpoint. Easily the smoothest part of the holiday.', who:'Anjali R.', city:'Mumbai → Srinagar', ini:'AR' },
-  { quote:'We run a small tour operator out of Bangalore. Irha Kars handles every Kashmir handover for our groups — buses, tempos, sedans, paperwork. Zero drama in three seasons.', who:'Kiran Mehta', city:'Lotus Holidays · B2B', ini:'KM' },
-  { quote:'Took the Volvo sleeper from Delhi up to Srinagar overnight. Genuinely comfortable, and the driver swap at Patnitop was on the dot. Will book again.', who:'Devansh Singh', city:'Delhi → Kashmir', ini:'DS' },
+  { quote:'Very professional and reliable service. They managed our Kashmir trip perfectly without any hassle. The drivers were knowledgeable and everything from flights to hotels was perfectly organized. Highly recommended for families.', who:'Shabir Ahmad', time:'a month ago', ini:'S', rating: 5 },
+  { quote:'I booked a Kashmir tour package for my parents. Irha Kars made sure they were comfortable and taken care of throughout the journey. Great hotels, excellent transport, and absolutely breathtaking views of Dal Lake.', who:'Faisal Wani', time:'3 months ago', ini:'F', rating: 5 },
+  { quote:'Best travel agency in Srinagar! Their custom packages and transparency in pricing sets them apart. Excellent customer support 24×7. We had some flight delays and they instantly re-arranged our accommodation without any stress.', who:'Mohammad Yasin', time:'6 months ago', ini:'M', rating: 5 },
+  { quote:'Booked an Innova Crysta with Showkat for our 6-day Kashmir trip. The driver knew every shortcut, every viewpoint. Easily the smoothest part of the holiday.', who:'Anjali R.', time:'2 months ago', ini:'A', rating: 5 },
+  { quote:'We run a small tour operator out of Bangalore. Irha Kars handles every Kashmir handover for our groups — buses, tempos, sedans, paperwork. Zero drama in three seasons.', who:'Kiran Mehta', time:'4 months ago', ini:'K', rating: 5 },
+  { quote:'Took the Volvo sleeper from Delhi up to Srinagar overnight. Genuinely comfortable, and the driver swap at Patnitop was on the dot. Will book again.', who:'Devansh Singh', time:'a month ago', ini:'D', rating: 5 },
+  { quote:'Excellent service by Irha Kars. Driver was very polite and punctual. The car was clean and well maintained. Highly recommended for Kashmir trips.', who:'Sameer Bhat', time:'5 months ago', ini:'S', rating: 5 },
+  { quote:'Our family trip to Gulmarg and Pahalgam was seamless. The driver knew all the best local food spots. A memorable experience!', who:'Priya Sharma', time:'a month ago', ini:'P', rating: 5 },
+  { quote:'Very transparent pricing. No hidden charges at the end of our 5-day trip. Will definitely use them again next year.', who:'Rohit Verma', time:'2 months ago', ini:'R', rating: 5 },
+  { quote:'Safety was my biggest concern as a solo female traveler. The team made me feel completely secure. Great communication via WhatsApp.', who:'Ayesha Khan', time:'3 months ago', ini:'A', rating: 5 },
+  { quote:'Used their tempo traveller for a family group of 14. The vehicle was in pristine condition, AC worked perfectly, and the driver was extremely patient.', who:'Tariq Dar', time:'6 months ago', ini:'T', rating: 5 },
+  { quote:'The best car rental in Srinagar! They customized our itinerary perfectly and even accommodated a last-minute change to visit Sonmarg.', who:'Neha Gupta', time:'2 weeks ago', ini:'N', rating: 5 },
+  { quote:'Amazing experience! The driver arrived at the airport on time. The journey to Pahalgam was smooth despite the heavy traffic.', who:'Vishal Patel', time:'a month ago', ini:'V', rating: 5 },
+  { quote:'I highly recommend Irha Kars for anyone visiting Kashmir. Booking on WhatsApp was super easy, and they delivered exactly what they promised.', who:'Zoya Syed', time:'4 months ago', ini:'Z', rating: 5 },
+  { quote:'Professionalism at its best. The Innova Crysta was spotless. Our driver Showkat was basically a local guide for us.', who:'Imran Malik', time:'3 months ago', ini:'I', rating: 5 },
+  { quote:'A big thank you to the team for making our anniversary trip so special. Flawless transport arrangements across the valley.', who:'Kavita Rao', time:'5 months ago', ini:'K', rating: 5 },
+  { quote:'Booked a sedan for a quick 2-day business trip. Efficient, on-time, and very courteous service. Five stars!', who:'Arjun Nair', time:'a month ago', ini:'A', rating: 5 },
+  { quote:'We faced a flight delay, but our driver waited at the airport without any complaints. That level of service is rare.', who:'Salman Sheikh', time:'2 months ago', ini:'S', rating: 5 },
+  { quote:'The entire process from getting a quote to the final drop-off was handled professionally. Good cars, good people.', who:'Ritu Desai', time:'4 months ago', ini:'R', rating: 5 },
+  { quote:'Top-notch fleet. We had an Urbania for our group, and it felt like a luxury lounge on wheels. Will book again.', who:'Asif Mir', time:'3 months ago', ini:'A', rating: 5 },
+  { quote:'Very happy with the service. The driver was cautious on the mountain roads, which put us all at ease.', who:'Meenakshi Iyer', time:'a month ago', ini:'M', rating: 5 },
 ];
 
 const FAQS = [

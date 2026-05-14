@@ -230,6 +230,19 @@ a {
   transform: translateY(-2px);
 }
 
+.cta-btn.outline {
+  background: transparent;
+  color: var(--teal);
+  border: 1.5px solid var(--teal);
+  box-shadow: none;
+}
+
+.cta-btn.outline:hover {
+  background: var(--teal-bg);
+  color: var(--teal-deep);
+  transform: translateY(-2px);
+}
+
 /* mobile nav */
 .nav-toggle {
   display: none;
@@ -1695,9 +1708,16 @@ a {
 
 /* ============== testimonials ============== */
 .testimonials {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  overflow-x: auto;
   gap: 20px;
+  padding-bottom: 20px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.testimonials::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 .t-card {
