@@ -3692,3 +3692,52 @@ html {
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ============== social links ============== */
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8px;
+}
+
+.social-icon:hover {
+  background: var(--teal);
+  color: #fff;
+  transform: translateY(-3px);
+  border-color: var(--teal);
+  box-shadow: 0 8px 20px rgba(0, 161, 155, 0.3);
+}
+
+.social-icon.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
+}
+
+.social-icon.facebook:hover {
+  background: #1877F2;
+  box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3);
+}
+
+.social-icon.youtube:hover {
+  background: #FF0000;
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+}

@@ -92,6 +92,11 @@ function Nav() {
               </svg>
               Book on WhatsApp
             </a>
+
+            <div style={{ marginTop: 'auto', paddingTop: 40, borderTop: '1px solid var(--line)' }}>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>Follow us</div>
+              {window.SocialLinks && <window.SocialLinks />}
+            </div>
           </div>
         </div>
       )}
