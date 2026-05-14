@@ -3660,3 +3660,35 @@ html {
   color: var(--teal);
   letter-spacing: 0.5px;
 }
+
+/* Quote block under progress bar */
+.lottie-quote-block {
+  margin-top: 28px;
+  text-align: center;
+  max-width: 420px;
+  padding: 0 16px;
+}
+
+.lottie-quote-text {
+  font-family: 'Recoleta', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink-2);
+  font-style: italic;
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+
+.lottie-quote-author {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  text-transform: uppercase;
+}
+
+@keyframes lottie-fade-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
