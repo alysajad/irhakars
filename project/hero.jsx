@@ -71,7 +71,7 @@ function Nav() {
         <div className="mobile-menu-overlay" onClick={closeMenu}>
           <div className="mobile-menu" onClick={e => e.stopPropagation()}>
             <div className="mobile-menu-header">
-              <Logo size={28} /><span>IRHA KARS</span>
+              <Logo size={28} /><span style={{ fontFamily: "'Nevera', 'Open Sans', sans-serif", fontWeight: 'normal', letterSpacing: '0.12em', fontSize: 20 }}>IRHA KARS</span>
             </div>
             <div className="mobile-menu-links">
               <a href="#fleet" onClick={closeMenu}>Fleet</a>

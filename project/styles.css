@@ -3,6 +3,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 
+@font-face {
+  font-family: 'Nevera';
+  src: url('fonts/Nevera-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --sand: #e4ddd3;
   --sand-2: #ede8e1;
@@ -137,9 +145,10 @@ a {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 19px;
-  font-weight: 700;
+  font-family: 'Nevera', 'Open Sans', sans-serif;
+  font-size: 22px;
+  font-weight: normal;
+  letter-spacing: 0.12em;
   color: #fff;
   transition: color .3s;
 }
