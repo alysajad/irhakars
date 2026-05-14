@@ -95,7 +95,7 @@ function Nav() {
 
             <div style={{ marginTop: 'auto', paddingTop: 40, borderTop: '1px solid var(--line)' }}>
               <div className="eyebrow" style={{ marginBottom: 16 }}>Follow us</div>
-              {window.SocialLinks && <window.SocialLinks />}
+              {window.SocialLinks && <window.SocialLinks theme="light" />}
             </div>
           </div>
         </div>

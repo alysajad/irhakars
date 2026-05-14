@@ -159,9 +159,11 @@ a {
 
 .nav .links {
   display: flex;
-  gap: 32px;
-  font-size: 14px;
+  gap: 28px;
+  font-family: 'DM Sans', 'Open Sans', sans-serif;
+  font-size: 15px;
   font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .nav .links a {
@@ -2939,8 +2941,8 @@ html {
   }
 
   .nav .links {
-    gap: 20px;
-    font-size: 13px;
+    gap: 16px;
+    font-size: 14px;
   }
 
   .footer-grid {
@@ -3740,4 +3742,16 @@ html {
 .social-icon.youtube:hover {
   background: #FF0000;
   box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
-}
+}
+
+.social-links.light .social-icon {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ink);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.social-links.light .social-icon:hover {
+  color: #fff;
+  border-color: transparent;
+}
+

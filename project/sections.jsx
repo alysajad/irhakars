@@ -900,8 +900,8 @@ function Contact() {
 }
 
 // ============== SOCIAL LINKS ==============
-window.SocialLinks = () => (
-  <div className="social-links">
+window.SocialLinks = ({ theme = 'dark' } = {}) => (
+  <div className={`social-links ${theme}`}>
     <a href="https://www.instagram.com/irhakars?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="social-icon instagram" target="_blank" rel="noreferrer" aria-label="Instagram">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
     </a>
@@ -924,7 +924,7 @@ function Footer() {
           <div className="footer-brand">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <Logo size={34} />
-              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '.06em' }}>IRHA KARS</div>
+              <div style={{ fontFamily: "'Nevera', 'Open Sans', sans-serif", fontSize: 24, fontWeight: 'normal', color: '#fff', letterSpacing: '.12em' }}>IRHA KARS</div>
             </div>
             <p>All-India tourist transport. Sedans, SUVs, tempos, buses and Volvo sleepers — every vehicle with a driver who knows the road.</p>
             <p style={{ color: 'rgba(255,255,255,.35)', fontSize: 13 }}>Babdam, Srinagar, Kashmir 190001 · www.irhakars.in</p>
