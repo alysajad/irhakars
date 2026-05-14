@@ -3519,268 +3519,107 @@ html {
 }
 
 /* ============== loading screen ============== */
-.loading-screen {
+.lottie-loading-screen {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: linear-gradient(180deg, var(--sand) 0%, var(--sand-2) 100%);
+  background-color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity .6s ease, transform .6s ease;
+  transition: opacity .6s ease;
 }
 
-.loading-screen.fade-out {
+.lottie-loading-screen.fade-out {
   opacity: 0;
   pointer-events: none;
-  transform: scale(1.02);
 }
 
-.loading-content {
+.lottie-loading-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 36px;
-  width: 100%;
-  max-width: 700px;
-  padding: 0 40px;
+  gap: 20px;
+  width: 340px;
+  max-width: 90vw;
+  margin-top: 120px; /* space for the bouncing car */
 }
 
-/* Logo reveal */
-.loading-logo-reveal {
-  opacity: 0;
-  transform: translateY(20px) scale(.9);
-  transition: opacity .8s ease, transform .8s ease;
-}
-
-.loading-logo-reveal.show {
-  opacity: 1;
-  transform: none;
-}
-
-/* Road + car animation container */
-.loading-road-container {
+.lottie-progress-container {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 24px;
+}
+
+.lottie-progress-bar-bg {
+  width: 100%;
+  height: 24px;
+  border: 2px solid var(--teal-deep);
+  border-radius: 12px;
+  padding: 3px;
+  box-sizing: border-box;
+}
+
+.lottie-progress-segments {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-
-/* Text track behind the car */
-.loading-text-track {
-  position: absolute;
-  bottom: 38px;
-  left: 0;
-  right: 0;
-  height: 80px;
-  display: flex;
-  align-items: flex-end;
+  gap: 2px;
+  height: 100%;
+  border-radius: 8px;
   overflow: hidden;
 }
 
-.loading-text-mask {
-  overflow: hidden;
-  white-space: nowrap;
-  transition: width .05s linear;
+.lottie-segment {
+  flex: 1;
+  background-color: transparent;
+  border-radius: 2px;
+  transition: background-color 0.05s linear;
 }
 
-.loading-text {
-  font-family: 'Proxima Nova Condensed', 'Proxima Nova', 'Arial Narrow', sans-serif;
-  font-size: 56px;
-  color: var(--teal);
-  margin: 0;
-  font-weight: 800;
-  letter-spacing: .06em;
-  line-height: 1;
-  white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0, 161, 155, .15);
+.lottie-segment.filled {
+  background-color: var(--teal);
 }
 
-/* Road surface */
-.loading-road {
+.lottie-progress-knob-wrapper {
   position: absolute;
-  bottom: 18px;
-  left: 0;
-  right: 0;
-  height: 8px;
-  background: var(--ink);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.loading-road-line {
-  position: absolute;
-  top: 3px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, .5) 0, rgba(255, 255, 255, .5) 20px, transparent 20px, transparent 40px);
-  animation: roadLineMove 1s linear infinite;
-}
-
-@keyframes roadLineMove {
-  from {
-    transform: translateX(-40px);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-}
-
-/* Car sprite */
-.loading-car-sprite {
-  position: absolute;
-  bottom: 20px;
-  transform: translateX(-50%);
-  z-index: 3;
-  transition: left .05s linear;
-}
-
-.loading-car-bounce {
-  animation: none;
-}
-
-.loading-car-bounce.driving {
-  animation: carBounce .3s ease-in-out infinite;
-}
-
-@keyframes carBounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-3px);
-  }
-}
-
-/* Spinning wheels */
-.loading-wheel-spin {
-  transform-origin: center;
-  animation: wheelSpin .4s linear infinite;
-}
-
-@keyframes wheelSpin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Override for front wheel at cx=145 cy=55 */
-.loading-hotwheel .loading-wheel-spin:first-of-type {
-  transform-origin: 145px 55px;
-}
-
-.loading-hotwheel .loading-wheel-spin:last-of-type {
-  transform-origin: 55px 55px;
-}
-
-/* Tagline */
-.loading-tagline {
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity .6s ease .2s, transform .6s ease .2s;
-  text-align: center;
+  top: 0;
+  width: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  transition: left 0.05s linear;
 }
 
-.loading-tagline.show {
-  opacity: 1;
-  transform: none;
+.lottie-progress-knob {
+  width: 24px;
+  height: 24px;
+  background-color: var(--teal-hi);
+  border: 2px solid var(--teal-deep);
+  border-radius: 50%;
+  box-sizing: border-box;
+  z-index: 2;
 }
 
-.loading-tagline p {
-  font-family: 'Proxima Nova Condensed', 'Proxima Nova', 'Arial Narrow', sans-serif;
+.lottie-car-wrapper {
+  position: absolute;
+  bottom: 22px; /* sit on top of knob */
+  transform: translateX(-50%);
+  left: 50%;
+  z-index: 3;
+}
+
+.lottie-car-bounce {
+  animation: lottieCarBounce .25s ease-in-out infinite alternate;
+}
+
+@keyframes lottieCarBounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-3px); }
+}
+
+.lottie-loading-text {
+  font-family: 'Open Sans', 'Inter', sans-serif;
+  font-weight: 700;
   font-size: 16px;
-  color: var(--ink-2);
-  font-style: italic;
-  line-height: 1.5;
-}
-
-.loading-tagline-line {
-  width: 40px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--teal);
-  display: block;
-}
-
-.loading-tagline-sub {
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-/* Progress bar */
-.loading-progress-bar {
-  width: 200px;
-  height: 3px;
-  background: var(--line);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.loading-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--teal), var(--teal-hi));
-  border-radius: 2px;
-  transition: width .1s linear;
-}
-
-/* Mobile loading */
-@media (max-width: 720px) {
-  .loading-text {
-    font-size: 36px;
-  }
-
-  .loading-hotwheel {
-    width: 140px;
-    height: 56px;
-  }
-
-  .loading-road-container {
-    height: 100px;
-  }
-
-  .loading-text-track {
-    bottom: 28px;
-  }
-
-  .loading-road {
-    bottom: 12px;
-  }
-
-  .loading-car-sprite {
-    bottom: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .loading-text {
-    font-size: 28px;
-  }
-
-  .loading-hotwheel {
-    width: 110px;
-    height: 44px;
-  }
-
-  .loading-content {
-    gap: 24px;
-  }
+  color: var(--teal);
+  letter-spacing: 0.5px;
 }

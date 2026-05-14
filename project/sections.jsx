@@ -630,66 +630,60 @@ function Team() {
         <div className="s-head reveal">
           <div>
             <div className="eyebrow"><span className="dot"></span>The Leadership</div>
-            <h2 className="display s-title" style={{ marginTop: 16 }}>Meet the team<br /><span className="accent">behind the wheel.</span></h2>
+            <h2 className="display s-title" style={{ marginTop: 16 }}>Meet the man<br /><span className="accent">behind the wheels.</span></h2>
           </div>
-          <p className="s-desc">From the founder's vision to everyday operations — the people who make every trip seamless.</p>
         </div>
 
-        {/* Team Showcase: Photo Grid + Name List */}
-        <div className="team-showcase reveal">
-          {/* Left: photo grid */}
-          <div className="team-photo-grid">
-            {/* Column 1 */}
-            <div className="team-photo-col">
-              {col1.map((member) => (
-                <TeamPhotoCard
-                  key={member.id}
-                  member={member}
-                  className="team-photo-sm"
-                  hoveredId={hoveredId}
-                  onHover={setHoveredId}
-                />
-              ))}
-            </div>
-
-            {/* Column 2 — offset */}
-            <div className="team-photo-col team-photo-col-offset">
-              {col2.map((member) => (
-                <TeamPhotoCard
-                  key={member.id}
-                  member={member}
-                  className="team-photo-md"
-                  hoveredId={hoveredId}
-                  onHover={setHoveredId}
-                />
-              ))}
-            </div>
-
-            {/* Column 3 — slight offset */}
-            <div className="team-photo-col team-photo-col-offset-sm">
-              {col3.map((member) => (
-                <TeamPhotoCard
-                  key={member.id}
-                  member={member}
-                  className="team-photo-sm"
-                  hoveredId={hoveredId}
-                  onHover={setHoveredId}
-                />
-              ))}
-            </div>
+        {/* CEO Showcase */}
+        <div className="ceo-showcase reveal" style={{ display: 'flex', flexWrap: 'wrap', gap: '40px', marginTop: '40px', alignItems: 'center' }}>
+          
+          {/* Left: Text */}
+          <div style={{ flex: '1 1 400px' }}>
+             <h3 style={{ fontFamily: "'Recoleta', serif", fontSize: '32px', color: 'var(--ink)', marginBottom: '24px' }}>Words from the CEO</h3>
+             <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'var(--ink-2)', marginBottom: '24px' }}>
+               "Founded Irha Kars in 2009 with a simple vision: to elevate the standard of tourist transport in Kashmir. Over the past 17+ years, we have poured our expertise into every strategic decision, ensuring that safety, comfort, and reliability remain our core pillars."
+             </p>
+             <p style={{ fontSize: '18px', lineHeight: '1.6', color: 'var(--ink-2)' }}>
+               "Our goal is not just to provide a vehicle, but to deliver a seamless, memorable experience across every road in Kashmir. We treat every guest's journey as our own, training our drivers to be local guides and guardians for our travelers."
+             </p>
+             <div style={{ marginTop: '32px', paddingLeft: '20px', borderLeft: '3px solid var(--teal)' }}>
+               <h4 style={{ margin: 0, fontSize: '20px', color: 'var(--ink)', fontFamily: "'Open Sans', sans-serif" }}>Irfan Ahmad</h4>
+               <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600 }}>CEO & Founder, Irha Kars</p>
+             </div>
           </div>
 
-          {/* Right: member name list */}
-          <div className="team-name-list">
-            {members.map((member) => (
-              <TeamMemberRow
-                key={member.id}
-                member={member}
-                hoveredId={hoveredId}
-                onHover={setHoveredId}
-              />
-            ))}
+          {/* Right: Photo */}
+          <div style={{ flex: '1 1 400px', display: 'flex', justifyContent: 'flex-end' }}>
+             <div 
+               style={{ 
+                 position: 'relative', 
+                 width: '100%', 
+                 maxWidth: '420px',
+                 borderRadius: '24px',
+                 overflow: 'hidden',
+                 boxShadow: 'var(--shadow-card)',
+                 transform: hoveredId ? 'translateY(-5px)' : 'none',
+                 transition: 'all 0.4s ease',
+                 cursor: 'pointer'
+               }}
+               onMouseEnter={() => setHoveredId(true)}
+               onMouseLeave={() => setHoveredId(false)}
+             >
+               <img 
+                 src="uploads/owner.jpeg" 
+                 alt="Irfan Ahmad" 
+                 style={{ 
+                   display: 'block',
+                   width: '100%', 
+                   height: '520px', 
+                   objectFit: 'cover', 
+                   filter: hoveredId ? 'grayscale(0)' : 'grayscale(100%) brightness(0.9)',
+                   transition: 'filter 0.5s ease'
+                 }}
+               />
+             </div>
           </div>
+
         </div>
 
         {/* Meet the Drivers CTA */}

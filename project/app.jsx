@@ -1,101 +1,57 @@
 /* global React, ReactDOM, Nav, Hero, Marquee, Stats, Fleet, Routes, Packages, Drivers, Team, B2B, Testimonials, FAQ, Contact, Footer, ScrollCar, TweaksPanel, useTweaks, TweakSection, TweakSlider, TweakRadio, Logo, LogoFull, LogoBadge */
 const { useEffect, useState, useRef } = React;
 
-// ============== ANIMATED CAR SVG (Hot Wheels style) ==============
-function AnimatedCar({ progress }) {
+// ============== ANIMATED CAR SVG (Lottie Style) ==============
+function AnimatedCar() {
   return (
-    <svg viewBox="0 0 200 80" width="200" height="80" className="loading-hotwheel">
-      {/* Shadow */}
-      <ellipse cx="100" cy="72" rx="80" ry="6" fill="rgba(0,0,0,.12)">
-        <animate attributeName="rx" values="70;80;70" dur="0.6s" repeatCount="indefinite"/>
-      </ellipse>
-      {/* Body */}
-      <path d="M 30,50 L 40,30 L 70,20 L 140,20 L 165,30 L 175,50 Z" fill="var(--teal)" stroke="var(--teal-lo)" strokeWidth="1.5"/>
-      {/* Roof / cabin */}
-      <path d="M 58,30 L 68,14 L 120,14 L 135,30 Z" fill="var(--teal-deep)" opacity=".9"/>
-      {/* Windshield */}
-      <path d="M 62,29 L 70,16 L 95,16 L 95,29 Z" fill="rgba(200,240,238,.6)"/>
-      {/* Rear window */}
-      <path d="M 100,29 L 100,16 L 125,16 L 130,29 Z" fill="rgba(200,240,238,.45)"/>
-      {/* Hood shine */}
-      <path d="M 40,30 L 58,30 L 55,40 L 40,45 Z" fill="rgba(255,255,255,.2)"/>
-      {/* Body line */}
-      <line x1="35" y1="42" x2="170" y2="42" stroke="rgba(255,255,255,.25)" strokeWidth="1"/>
-      {/* Front bumper */}
-      <rect x="170" y="38" width="8" height="14" rx="3" fill="var(--teal-lo)"/>
-      {/* Rear bumper */}
-      <rect x="25" y="40" width="8" height="12" rx="3" fill="var(--teal-lo)"/>
-      {/* Headlights */}
-      <ellipse cx="176" cy="40" rx="3" ry="4" fill="rgba(255,235,100,.95)">
-        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.4s" repeatCount="indefinite"/>
-      </ellipse>
-      <ellipse cx="176" cy="48" rx="2" ry="3" fill="rgba(255,200,50,.7)"/>
-      {/* Taillights */}
-      <ellipse cx="28" cy="42" rx="2" ry="3" fill="rgba(255,50,50,.9)"/>
-      <ellipse cx="28" cy="48" rx="2" ry="3" fill="rgba(255,50,50,.7)"/>
-      {/* Front wheel */}
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 145 55" to="360 145 55" dur="0.4s" repeatCount="indefinite" />
-        <circle cx="145" cy="55" r="13" fill="#1a2625"/>
-        <circle cx="145" cy="55" r="10" fill="#2d3a39"/>
-        <circle cx="145" cy="55" r="7" fill="#555" stroke="#777" strokeWidth="0.8"/>
-        <circle cx="145" cy="55" r="3" fill="#888"/>
-        {/* Spokes */}
-        <line x1="145" y1="48" x2="145" y2="62" stroke="#666" strokeWidth="1"/>
-        <line x1="138" y1="55" x2="152" y2="55" stroke="#666" strokeWidth="1"/>
-        <line x1="140" y1="50" x2="150" y2="60" stroke="#666" strokeWidth="0.8"/>
-        <line x1="150" y1="50" x2="140" y2="60" stroke="#666" strokeWidth="0.8"/>
-      </g>
-      {/* Rear wheel */}
-      <g>
-        <animateTransform attributeName="transform" type="rotate" from="0 55 55" to="360 55 55" dur="0.4s" repeatCount="indefinite" />
-        <circle cx="55" cy="55" r="13" fill="#1a2625"/>
-        <circle cx="55" cy="55" r="10" fill="#2d3a39"/>
-        <circle cx="55" cy="55" r="7" fill="#555" stroke="#777" strokeWidth="0.8"/>
-        <circle cx="55" cy="55" r="3" fill="#888"/>
-        <line x1="55" y1="48" x2="55" y2="62" stroke="#666" strokeWidth="1"/>
-        <line x1="48" y1="55" x2="62" y2="55" stroke="#666" strokeWidth="1"/>
-        <line x1="50" y1="50" x2="60" y2="60" stroke="#666" strokeWidth="0.8"/>
-        <line x1="60" y1="50" x2="50" y2="60" stroke="#666" strokeWidth="0.8"/>
-      </g>
-      {/* Speed lines behind car */}
-      {progress > 10 && (
-        <g opacity={Math.min(progress / 50, 0.6)}>
-          <line x1="5" y1="35" x2={25 - progress * 0.1} y2="35" stroke="var(--teal-hi)" strokeWidth="1.5" strokeLinecap="round" opacity=".4"/>
-          <line x1="0" y1="42" x2={20 - progress * 0.12} y2="42" stroke="var(--teal-hi)" strokeWidth="1" strokeLinecap="round" opacity=".3"/>
-          <line x1="8" y1="50" x2={22 - progress * 0.08} y2="50" stroke="var(--teal-hi)" strokeWidth="1.5" strokeLinecap="round" opacity=".35"/>
+    <svg viewBox="0 0 100 45" width="200" height="90" className="lottie-sedan">
+      <g className="lottie-car-bounce">
+        {/* Car Body */}
+        <path d="M 12,32 L 8,24 Q 8,16 22,16 L 38,10 Q 55,6 70,16 L 88,24 Q 93,30 93,32 Z" fill="var(--teal)" stroke="var(--teal-deep)" strokeWidth="2.5" strokeLinejoin="round" />
+        {/* Windows */}
+        <path d="M 28,17 L 42,12 L 52,12 L 52,22 L 20,22 Z" fill="var(--ink-2)" />
+        <path d="M 57,12 L 68,17 L 78,22 L 57,22 Z" fill="var(--ink-2)" />
+        {/* Headlight */}
+        <ellipse cx="85" cy="25" rx="3" ry="1.5" fill="#FFFFFF" />
+        {/* Taillight */}
+        <rect x="8" y="22" width="3" height="5" fill="#E74C3C" rx="1" />
+        {/* Wheels */}
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0 22 32" to="360 22 32" dur="0.35s" repeatCount="indefinite" />
+          <circle cx="22" cy="32" r="8" fill="var(--ink)" />
+          <circle cx="22" cy="32" r="5" fill="var(--sand-2)" />
+          <path d="M 22,27 L 22,37 M 17,32 L 27,32 M 18.5,28.5 L 25.5,35.5 M 25.5,28.5 L 18.5,35.5" stroke="var(--ink)" strokeWidth="1" />
         </g>
-      )}
+        <g>
+          <animateTransform attributeName="transform" type="rotate" from="0 72 32" to="360 72 32" dur="0.35s" repeatCount="indefinite" />
+          <circle cx="72" cy="32" r="8" fill="var(--ink)" />
+          <circle cx="72" cy="32" r="5" fill="var(--sand-2)" />
+          <path d="M 72,27 L 72,37 M 67,32 L 77,32 M 68.5,28.5 L 75.5,35.5 M 75.5,28.5 L 68.5,35.5" stroke="var(--ink)" strokeWidth="1" />
+        </g>
+      </g>
     </svg>
   );
 }
 
 function LoadingScreen({ onComplete }) {
   const [progress, setProgress] = useState(0);
-  const [phase, setPhase] = useState(0); // 0=logo, 1=car driving, 2=done
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     
-    // Phase 0: logo reveal (0-20%)
-    // Phase 1: car drives and reveals text (20-90%)
-    // Phase 2: everything assembled (90-100%)
-    const duration = 3500;
+    const duration = 1800;
     const interval = 16;
     let elapsed = 0;
     const timer = setInterval(() => {
       elapsed += interval;
       const p = Math.min((elapsed / duration) * 100, 100);
       setProgress(p);
-      if (p < 20) setPhase(0);
-      else if (p < 90) setPhase(1);
-      else setPhase(2);
       if (elapsed >= duration) {
         clearInterval(timer);
         setTimeout(() => {
           document.body.style.overflow = '';
           onComplete();
-        }, 600);
+        }, 400);
       }
     }, interval);
 
@@ -105,51 +61,34 @@ function LoadingScreen({ onComplete }) {
     };
   }, [onComplete]);
 
-  const carX = Math.min(Math.max((progress - 15) / 70, 0), 1) * 100;
-  const textReveal = Math.min(Math.max((progress - 20) / 60, 0), 1) * 100;
+  // Generate segments for the progress bar
+  const totalSegments = 25; // Number of vertical rectangles
+  const filledSegments = Math.floor((progress / 100) * totalSegments);
 
   return (
-    <div className={`loading-screen ${progress >= 98 ? 'fade-out' : ''}`}>
-      <div className="loading-content">
-
-        {/* Phase 0+: Logo fades in */}
-        <div className={`loading-logo-reveal ${phase >= 0 ? 'show' : ''}`}>
-          <LogoBadge size={100} variant="default"/>
-        </div>
-
-        {/* Road + car animation */}
-        <div className="loading-road-container">
-          {/* Revealed text behind car */}
-          <div className="loading-text-track">
-            <div className="loading-text-mask" style={{ width: `${textReveal}%` }}>
-              <h1 className="loading-text">IRHA KARS</h1>
+    <div className={`lottie-loading-screen ${progress >= 98 ? 'fade-out' : ''}`}>
+      <div className="lottie-loading-content">
+        
+        <div className="lottie-progress-container">
+          {/* Progress Bar Background */}
+          <div className="lottie-progress-bar-bg">
+            <div className="lottie-progress-segments">
+               {[...Array(totalSegments)].map((_, i) => (
+                 <div key={i} className={`lottie-segment ${i < filledSegments ? 'filled' : ''}`}></div>
+               ))}
             </div>
           </div>
-
-          {/* Road surface */}
-          <div className="loading-road">
-            <div className="loading-road-line"></div>
-          </div>
-
-          {/* Animated car driving */}
-          <div className="loading-car-sprite" style={{ left: `${carX}%` }}>
-            <div className={`loading-car-bounce ${phase === 1 ? 'driving' : ''}`}>
-              <AnimatedCar progress={progress}/>
-            </div>
+          
+          {/* Knob and Car wrapper moving together */}
+          <div className="lottie-progress-knob-wrapper" style={{ left: `calc(${progress}% - 12px)` }}>
+             <div className="lottie-car-wrapper">
+               <AnimatedCar />
+             </div>
+             <div className="lottie-progress-knob"></div>
           </div>
         </div>
-
-        {/* Tagline */}
-        <div className={`loading-tagline ${phase >= 1 ? 'show' : ''}`}>
-          <span className="loading-tagline-line"></span>
-          <p>"The journey matters as much as the destination."</p>
-          <span className="loading-tagline-sub">Your premium transport partner in Kashmir</span>
-        </div>
-
-        {/* Progress indicator */}
-        <div className="loading-progress-bar">
-          <div className="loading-progress-fill" style={{ width: `${progress}%` }}></div>
-        </div>
+        
+        <div className="lottie-loading-text">Loading..</div>
       </div>
     </div>
   );

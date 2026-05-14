@@ -112,12 +112,7 @@ const FAQS = [
 ];
 
 const TEAM = [
-  { id:'1', name:'Irfan Ahmad',   role:'CEO & Founder',     ini:'IA', desc:'Founded Irha Kars in 2009. 17+ years of Kashmir tourism expertise driving every strategic decision.', photo:'drivers/showkat.png' },
-  { id:'2', name:'Rashid Khan',   role:'Operations Manager', ini:'RK', desc:'Manages day-to-day fleet operations, driver scheduling, and ensures every trip runs like clockwork.', photo:'drivers/imtiyaz.png' },
-  { id:'3', name:'Faisal Mir',    role:'Sales Lead',         ini:'FM', desc:'Handles all B2B partnerships and travel agency relationships. Your first point of contact for group bookings.', photo:'drivers/bilal.png' },
-  { id:'4', name:'Sameer Wani',   role:'Fleet Manager',      ini:'SW', desc:'Keeps every vehicle road-ready — from Swift to Volvo sleeper. Zero tolerance for mechanical surprises.', photo:'drivers/tariq.png' },
-  { id:'5', name:'Nasir Shah',    role:'Finance & Accounts', ini:'NS', desc:'GST invoicing, monthly billing for B2B clients, and transparent pricing that builds trust.', photo:'drivers/javed.png' },
-  { id:'6', name:'Zahoor Bhat',   role:'Customer Relations', ini:'ZB', desc:'24/7 support, trip co-ordination, and making sure every traveller feels looked after on Kashmir roads.', photo:'drivers/aamir.png' },
+  { id:'1', name:'Irfan Ahmad',   role:'CEO & Founder',     ini:'IA', desc:'Founded Irha Kars in 2009. 17+ years of Kashmir tourism expertise driving every strategic decision.', photo:'uploads/owner.jpeg' },
 ];
 
 window.IRHA = { CARS, ROUTES, PACKAGES, DRIVERS, TESTIMONIALS, FAQS, TEAM };
