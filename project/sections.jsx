@@ -647,7 +647,7 @@ function Team() {
               "Our goal is not just to provide a vehicle, but to deliver a seamless, memorable experience across every road in Kashmir. We treat every guest's journey as our own, training our drivers to be local guides and guardians for our travelers."
             </p>
             <div style={{ marginTop: '32px', paddingLeft: '20px', borderLeft: '3px solid var(--teal)' }}>
-              <h4 style={{ margin: 0, fontSize: '20px', color: 'var(--ink)', fontFamily: "'Open Sans', sans-serif" }}>Irfan Ahmad</h4>
+              <h4 style={{ margin: 0, fontSize: '20px', color: 'var(--ink)', fontFamily: "'Open Sans', sans-serif" }}>Syed Irfan Razvi </h4>
               <p style={{ margin: '4px 0 0 0', fontSize: '14px', color: 'var(--muted)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600 }}>CEO & Founder, Irha Kars</p>
             </div>
           </div>
