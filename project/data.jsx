@@ -122,15 +122,33 @@ const PACKAGES = [
 ];
 
 const DRIVERS = [
-  { name: 'Showkat Ahmad', role: 'Senior · Kashmir Valley', years: 18, skills: ['Urdu', 'Hindi', 'English', 'Kashmiri'], ini: 'SA', dl: 'JK01-XXXX-2007', phone: '+91 70067 XXXXX', photo: 'drivers/showkat.png' },
-  { name: 'Imtiyaz Bhat', role: 'Highway · Delhi route', years: 12, skills: ['Hindi', 'English', 'Punjabi'], ini: 'IB', dl: 'JK02-XXXX-2013', phone: '+91 60058 XXXXX', photo: 'drivers/imtiyaz.png' },
-  { name: 'Bilal Mir', role: 'Mountain · Sonmarg/Zojila', years: 15, skills: ['Urdu', 'Hindi', 'Kashmiri'], ini: 'BM', dl: 'JK01-XXXX-2010', phone: '+91 70067 XXXXX', photo: 'drivers/bilal.png' },
-  { name: 'Tariq Wani', role: 'Tempo · 17/20 seater', years: 10, skills: ['Hindi', 'Urdu', 'English'], ini: 'TW', dl: 'JK03-XXXX-2015', phone: '+91 60058 XXXXX', photo: 'drivers/tariq.png' },
-  { name: 'Javed Lone', role: 'Coach · Jammu corridor', years: 14, skills: ['Hindi', 'Dogri', 'Urdu'], ini: 'JL', dl: 'JK02-XXXX-2011', phone: '+91 70067 XXXXX', photo: 'drivers/javed.png' },
-  { name: 'Aamir Ganie', role: 'Sedan · City', years: 8, skills: ['Urdu', 'English'], ini: 'AG', dl: 'JK01-XXXX-2017', phone: '+91 60058 XXXXX', photo: 'drivers/aamir.png' },
-  { name: 'Rouf Dar', role: 'Volvo Sleeper · Long haul', years: 16, skills: ['Hindi', 'Punjabi', 'Urdu'], ini: 'RD', dl: 'JK02-XXXX-2009', phone: '+91 70067 XXXXX', photo: 'drivers/rouf.png' },
-  { name: 'Sajad Para', role: 'Fortuner 4×4 · Off-road', years: 11, skills: ['Urdu', 'English', 'Hindi'], ini: 'SP', dl: 'JK01-XXXX-2014', phone: '+91 60058 XXXXX', photo: 'drivers/sajad.png' },
+  { name: 'Syed ishtaq', role: 'Senior · Kashmir Valley', years: 8, skills: ['Urdu', 'Hindi', 'English', 'Kashmiri'], ini: 'SI', dl: 'JK01-XXXX-2000', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_00.jpg' },
+  { name: 'Syed irfan razvi', role: 'Highway · Delhi route', years: 9, skills: ['Hindi', 'English', 'Punjabi'], ini: 'SI', dl: 'JK01-XXXX-2001', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_01.jpg' },
+  { name: 'Syed asif razvi', role: 'Mountain · Sonmarg/Zojila', years: 10, skills: ['Urdu', 'Hindi', 'Kashmiri'], ini: 'SA', dl: 'JK01-XXXX-2002', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_02.jpg' },
+  { name: 'Syed nadeem razvi', role: 'Tempo · 17/20 seater', years: 11, skills: ['Hindi', 'Urdu', 'English'], ini: 'SN', dl: 'JK01-XXXX-2003', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_03.jpg' },
+  { name: 'Mudasir hussain waza', role: 'Coach · Jammu corridor', years: 12, skills: ['Hindi', 'Dogri', 'Urdu'], ini: 'MH', dl: 'JK01-XXXX-2004', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_04.jpg' },
+  { name: 'Sajid ali', role: 'Sedan · City', years: 13, skills: ['Urdu', 'English'], ini: 'SA', dl: 'JK01-XXXX-2005', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_05.jpg' },
+  { name: 'Manzoor kawa', role: 'Volvo Sleeper · Long haul', years: 14, skills: ['Hindi', 'Punjabi', 'Urdu'], ini: 'MK', dl: 'JK01-XXXX-2006', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_06.jpg' },
+  { name: 'Zulifkar ali', role: 'Fortuner 4x4 · Off-road', years: 15, skills: ['Urdu', 'English', 'Hindi'], ini: 'ZA', dl: 'JK01-XXXX-2007', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_07.jpg' },
+  { name: 'Syed zulfkar', role: 'Senior · Kashmir Valley', years: 16, skills: ['Urdu', 'Hindi', 'English', 'Kashmiri'], ini: 'SZ', dl: 'JK01-XXXX-2008', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_08.jpg' },
+  { name: 'Danish ali mir', role: 'Highway · Delhi route', years: 17, skills: ['Hindi', 'English', 'Punjabi'], ini: 'DA', dl: 'JK01-XXXX-2009', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_09.jpg' },
+  { name: 'Nisar ah zargar', role: 'Mountain · Sonmarg/Zojila', years: 8, skills: ['Urdu', 'Hindi', 'Kashmiri'], ini: 'NA', dl: 'JK01-XXXX-2010', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_10.jpg' },
+  { name: 'Nisar ah rather', role: 'Tempo · 17/20 seater', years: 9, skills: ['Hindi', 'Urdu', 'English'], ini: 'NA', dl: 'JK01-XXXX-2011', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_11.jpg' },
+  { name: 'Sameer husain wani', role: 'Coach · Jammu corridor', years: 10, skills: ['Hindi', 'Dogri', 'Urdu'], ini: 'SH', dl: 'JK01-XXXX-2012', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_12.jpg' },
+  { name: 'Imran ali pandth', role: 'Sedan · City', years: 11, skills: ['Urdu', 'English'], ini: 'IA', dl: 'JK01-XXXX-2013', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_13.jpg' },
+  { name: 'Shahnawaz ali', role: 'Volvo Sleeper · Long haul', years: 12, skills: ['Hindi', 'Punjabi', 'Urdu'], ini: 'SA', dl: 'JK01-XXXX-2014', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_14.jpg' },
+  { name: 'Saleem hassan', role: 'Fortuner 4x4 · Off-road', years: 13, skills: ['Urdu', 'English', 'Hindi'], ini: 'SH', dl: 'JK01-XXXX-2015', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_15.jpg' },
+  { name: 'Shabir ah hajam', role: 'Senior · Kashmir Valley', years: 14, skills: ['Urdu', 'Hindi', 'English', 'Kashmiri'], ini: 'SA', dl: 'JK01-XXXX-2016', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_16.jpg' },
+  { name: 'Firdoous ali mir', role: 'Highway · Delhi route', years: 15, skills: ['Hindi', 'English', 'Punjabi'], ini: 'FA', dl: 'JK01-XXXX-2017', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_17.jpg' },
+  { name: 'Ali mohmmad dar', role: 'Mountain · Sonmarg/Zojila', years: 16, skills: ['Urdu', 'Hindi', 'Kashmiri'], ini: 'AM', dl: 'JK01-XXXX-2018', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_18.jpg' },
+  { name: 'G m mir', role: 'Tempo · 17/20 seater', years: 17, skills: ['Hindi', 'Urdu', 'English'], ini: 'GM', dl: 'JK01-XXXX-2019', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_19.jpg' },
+  { name: 'Zulfkar ali bhat', role: 'Coach · Jammu corridor', years: 8, skills: ['Hindi', 'Dogri', 'Urdu'], ini: 'ZA', dl: 'JK01-XXXX-2000', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_20.jpg' },
+  { name: 'Sajaad ali bhat', role: 'Sedan · City', years: 9, skills: ['Urdu', 'English'], ini: 'SA', dl: 'JK01-XXXX-2001', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_21.jpg' },
+  { name: 'Numan ali akhoon', role: 'Volvo Sleeper · Long haul', years: 10, skills: ['Hindi', 'Punjabi', 'Urdu'], ini: 'NA', dl: 'JK01-XXXX-2002', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_22.jpg' },
+  { name: 'Ali abass', role: 'Fortuner 4x4 · Off-road', years: 11, skills: ['Urdu', 'English', 'Hindi'], ini: 'AA', dl: 'JK01-XXXX-2003', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_23.jpg' },
+  { name: 'Syed muzamil', role: 'Senior · Kashmir Valley', years: 12, skills: ['Urdu', 'Hindi', 'English', 'Kashmiri'], ini: 'SM', dl: 'JK01-XXXX-2004', phone: '+91 70067 XXXXX', photo: 'uploads/drivers/face_24.jpg' },
 ];
+
 
 const TESTIMONIALS = [
   { quote: 'Very professional and reliable service. They managed our Kashmir trip perfectly without any hassle. The drivers were knowledgeable and everything from flights to hotels was perfectly organized. Highly recommended for families.', who: 'Shabir Ahmad', time: 'a month ago', ini: 'S', rating: 5 },
